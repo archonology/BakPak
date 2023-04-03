@@ -4,10 +4,11 @@ import { Container, Row, Col } from "react-bootstrap";
 const Calculator = () => {
     return (
         <>
-            <p>Calculator</p>
+            <h4>Back</h4>
             <Container className="box-outer">
                 <Row>
                     <Col className="box-display">
+                        <h2>108.77777</h2>
                     </Col>
                 </Row>
                 <div className="flex-container">

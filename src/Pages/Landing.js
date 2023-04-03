@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 const Landing = () => {
     return (
         <>     
-            <p>landing page</p>
+            <div className="top-pack"></div>
+            <div className="backpack">
+                <div>-----------------</div>
+            </div>
         </>
     )
 }

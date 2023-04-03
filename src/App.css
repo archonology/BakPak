@@ -1,9 +1,11 @@
 :root {
   --mainBlue: rgb(38, 68, 65);
   --secondBlue: rgb(33, 74, 139);
+  --thirdBlue: rgb(46, 68, 103);
   --light: rgb(244, 250, 252);
   --mainDark: rgb(35, 39, 42);
   --mainRed: rgb(209, 80, 80);
+  --secondRed: rgb(139, 57, 57);
 }
 
 html body {
@@ -13,25 +15,72 @@ html body {
   justify-content: center;
 }
 
-p {
-  margin: 2em;
+h1 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 50px;
+}
+
+h3 {
+  margin-top: 2em;
+  margin-left: 5px;
+  font-size: smaller;
+  /* color: rgb(158, 184, 212); */
+}
+
+.backpack {
+  background-color: var(--mainDark);
+  width: 325px;
+  height: 385px;
+  padding: 1em;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 0;
+  margin-top: -7em;
+  justify-content: center;
+}
+
+.backpack>div {
+  background-color: var(--secondBlue);
+  color: var(--mainDark);
+  line-height: 80px;
+  font-size: 40px;
+  width: 300px;
+  height: 190px;
+  margin-top: 190px;
+  border-radius: 12px 12px 0px 0px;
+}
+
+.top-pack {
+  border: 2em solid var(--mainDark);
+  width: 75px;
+  height: 75px;
+  padding: 1em;
+  border-radius: 50%;
+  margin-left: 6em;
+  display: flex;
 }
 
 .box-outer {
   background-color: var(--mainDark);
   width: 375px;
-  height: 550px;
+  height: 600px;
   padding: 1em;
-  margin: 1rem;
   border-radius: 12px;
 }
 
 .box-display {
   background-color: var(--light);
-  min-width: 300px;
-  min-height: 80px;
+  color: var(--mainDark);
+  max-width: 325px;
+  max-height: 80px;
   margin: 1em;
   border-radius: 12px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 80px;
+
 }
 
 .flex-container {
@@ -61,4 +110,13 @@ p {
   padding: 5px;
   border-radius: 12px;
   background-color: var(--mainRed);
+}
+
+
+.flex-container>div:hover {
+  background-color: var(--thirdBlue);
+}
+
+.flex-container>.equals:hover {
+  background-color: var(--secondRed);
 }
