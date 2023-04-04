@@ -1,38 +1,153 @@
-.App {
-  text-align: center;
+:root {
+  --mainBlue: rgb(38, 68, 65);
+  --secondBlue: rgb(33, 74, 139);
+  --thirdBlue: rgb(46, 68, 103);
+  --light: rgb(244, 250, 252);
+  --lesslight: rgb(202, 208, 210);
+  --mainDark: rgb(35, 39, 42);
+  --mainRed: rgb(209, 80, 80);
+  --secondRed: rgb(139, 57, 57);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+html body {
+  background-color: var(--mainBlue);
+  color: var(--light);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 2em;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  margin-top: 2em;
+  margin-left: 5px;
+  font-size: smaller;
+  /* color: rgb(158, 184, 212); */
+}
+
+a {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.backpack {
+  background-color: var(--mainDark);
+  width: 325px;
+  height: 385px;
+  padding: 1em;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 0;
+  margin-top: -7em;
+  justify-content: center;
+}
+
+.backpack>div {
+  background-color: var(--secondBlue);
+  color: var(--mainDark);
+  line-height: 80px;
+  font-size: 40px;
+  width: 300px;
+  height: 190px;
+  margin-top: 190px;
+  border-radius: 12px 12px 0px 0px;
+}
+
+.top-pack {
+  border: 2em solid var(--mainDark);
+  width: 75px;
+  height: 75px;
+  padding: 1em;
+  border-radius: 50%;
+  margin-left: 6em;
+  display: flex;
+}
+
+.box-outer {
+  background-color: var(--mainDark);
+  width: 375px;
+  height: 600px;
+  padding: 1em;
+  border-radius: 12px;
+}
+
+.box-display {
+  background-color: var(--light);
+  color: var(--mainDark);
+  max-width: 325px;
+  max-height: 80px;
+  margin: 1em;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 80px;
+
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+
+.flex-container>.tools {
+  background-color: var(--mainDark);
+    width: 125px;
+    height: 150px;
+    padding: 1em;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 12px;
+    justify-content: center;
+    line-height: 40px;
+}
+
+.flex-container>div {
+  background-color: var(--secondBlue);
+  width: 65px;
+  height: 65px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 60px;
+  border-radius: 50%;
+}
+
+.flex-container>.equals {
+  width: 150px;
+  height: 55px;
+  line-height: 55px;
+  margin: 6px;
+  margin-top: 12px;
+  padding: 5px;
+  border-radius: 12px;
+  background-color: var(--mainRed);
+}
+
+a:hover {
+  color: var(--lesslight);
+}
+
+.backpack:hover {
+  background-color: var(--secondRed);
+}
+
+.flex-container>.tools:hover {
+  background-color: var(--secondRed);
+}
+
+.flex-container>div:hover {
+  background-color: var(--thirdBlue);
+}
+
+.flex-container>.equals:hover {
+  background-color: var(--secondRed);
 }
