@@ -6,7 +6,32 @@ const Calculator = () => {
     //initialize our input to populate the caculator screen
     const [numState, setNumState] = useState('');
     const [mathState, setMathState] = useState('');
-    console.log();
+    const [mathNums, setMathNumState] = useState([]);
+    let num = 0;
+
+
+    async function handleEquation(value, mathType) {
+
+        if (mathType === '%') {
+            for (let i = 0; i < mathNums.length; i++) {
+                console.log(mathNums);
+                const solution = mathNums[i] % Number(numState);
+                setNumState(solution);
+                console.log(numState);
+            }
+
+        }
+        if (mathType === '+') {
+            for (let i = 0; i < mathNums.length; i++) {
+                console.log(mathNums);
+                const solution = mathNums[i] + Number(numState);
+                setNumState(solution);
+                console.log(numState);
+            }
+
+        }
+    }
+
     return (
         <>
             <Container className="box-outer">
@@ -25,7 +50,14 @@ const Calculator = () => {
                     </div>
                     <div value='+/-'>+/-</div>
                     <div
-                        onClick={() => setMathState('%')}
+                        onClick={() => {
+                            setMathState('%');
+                            num = Number(numState);
+                            setMathNumState([...mathNums, num]);
+                            setNumState('');
+                            // setMathState('');
+                            console.log(mathNums);
+                        }}
                     >%</div>
                     <div>÷</div>
                     <div
@@ -67,13 +99,32 @@ const Calculator = () => {
                         onClick={() => setNumState(numState + '3')}
                     >3
                     </div>
-                    <div>+</div>
+                    <div
+                        onClick={() => {
+                            setMathState('+');
+                            num = Number(numState);
+                            setMathNumState([...mathNums, num]);
+                            setNumState('');
+                            // setMathState('');
+                            console.log(mathNums);
+                        }}
+                    >+
+                    </div>
                     <div
                         onClick={() => setNumState(numState + '0')}
                     >0
                     </div>
                     <div>.</div>
-                    <div className="equals">=</div>
+                    <div
+                        className="equals"
+                        onClick={() => {
+                            num = Number(numState);
+                            handleEquation(num, mathState);
+                            setMathState('');
+                            // console.log(mathNums);
+                        }}
+                    >=
+                    </div>
                 </div>
             </Container>
         </>
