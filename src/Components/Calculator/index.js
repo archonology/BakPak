@@ -4,10 +4,15 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Calculator = () => {
     //initialize our input to populate the caculator screen
+    let currentNum = '';
+    let result = '';
     const [numState, setNumState] = useState('');
     const [mathState, setMathState] = useState('');
-    const [mathNums, setMathNumState] = useState([]);
-    let num = 0;
+    let num = numState;
+    const [mathNums, setMathNumState] = useState([num]);
+
+    const addToNum = (value) => setNumState(numState + value);
+    const addToCurrent = (value) => result = currentNum + value;
 
 
     async function handleEquation(value, mathType) {
@@ -23,7 +28,7 @@ const Calculator = () => {
         }
         if (mathType === '+') {
             for (let i = 0; i < mathNums.length; i++) {
-                console.log(mathNums);
+                console.log(mathNums[i]);
                 const solution = mathNums[i] + Number(numState);
                 setNumState(solution);
                 console.log(numState);
@@ -51,6 +56,8 @@ const Calculator = () => {
                     <div value='+/-'>+/-</div>
                     <div
                         onClick={() => {
+
+                            console.log(numState);
                             setMathState('%');
                             num = Number(numState);
                             setMathNumState([...mathNums, num]);
@@ -88,7 +95,24 @@ const Calculator = () => {
                     </div>
                     <div>-</div>
                     <div
-                        onClick={() => setNumState(numState + '1')}
+                        onClick={() => {
+
+                            addToCurrent('1');
+
+                            if (currentNum === '') {
+                                currentNum = '1';
+                                console.log(result);
+                            } else {
+                                // addToNum('1');
+                                result = currentNum + '1';
+                                currentNum = result;
+                                console.log(result);
+                            }
+
+
+
+                        }}
+
                     >1
                     </div>
                     <div
@@ -102,11 +126,14 @@ const Calculator = () => {
                     <div
                         onClick={() => {
                             setMathState('+');
-                            num = Number(numState);
-                            setMathNumState([...mathNums, num]);
+                            num = Number(currentNum);
+                            console.log(num);
+                            // setMathNumState(num);
+                            setMathNumState([num, ...mathNums]);
                             setNumState('');
                             // setMathState('');
                             console.log(mathNums);
+
                         }}
                     >+
                     </div>
