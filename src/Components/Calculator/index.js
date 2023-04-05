@@ -21,15 +21,15 @@ const Calculator = () => {
     }
 
     function saveNums() {
-        numArray.push(runningNum);
+        numArray.push(displayState);
         runningNum = '';
     }
-
-    function addNums() {
-        solution = numArray.reduce((a, b) => Number(a) + Number(b));
-        numArray = [];
-        return solution;
-    }
+    // this will work vanilla, but not React -- use for reference in construction:
+    // function addNums() {
+    //     solution = numArray.reduce((a, b) => Number(a) + Number(b));
+    //     numArray = [];
+    //     return solution;
+    // }
 
     function saveMaths(value) {
         runningMaths = value;
@@ -140,7 +140,17 @@ const Calculator = () => {
                     >
                         3
                     </div>
-                    <div>+</div>
+                    <div
+                        value={'+'}
+                        onClick={() => {
+                            console.log(runningNum);
+                            saveNums();
+                            setDisplayState('');
+                            console.log(numArray);
+                        }}
+                    >
+                        +
+                    </div>
                     <div
                         value={'0'}
                         onClick={() => {
@@ -161,15 +171,17 @@ const Calculator = () => {
                     </div>
 
                     <div
+                        value={'='}
                         className="equals"
-                    // onClick={() => {
-                    //     num = Number(numState);
-                    //     handleEquation(num, mathState);
-                    //     setMathState('');
-                    //     // console.log(mathNums);
-                    // }}
-                    >=
+                        onClick={() => {
+                            // addNums();
+                            setDisplayState('answer');
+                        }}
+
+                    >
+                        =
                     </div>
+
                 </div>
             </Container>
         </>
