@@ -1,22 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+
+
+// a few globals
 let runningNum = '';
 let numArray = [];
-let solution = 0;
+let solution = '';
+
+
 const Calculator = () => {
-
-
 
     const [displayState, setDisplayState] = useState('');
     const [mathTypeState, setMathTypeState] = useState('');
-    const [valueState, setValueState] = useState([]);
 
-    // build the user's number by adding characters to strings, later converted to numbers
+    // build the user's number by adding characters to strings
     function buildNum(value) {
         runningNum += value;
     }
 
+    // save the runningNum to the global array when the user clicks the various math buttons
     function saveNums() {
         numArray.push(runningNum);
         console.log(numArray);
@@ -44,9 +47,28 @@ const Calculator = () => {
         return solution;
     }
 
-    // function saveMaths(value) {
-    //     runningMaths = value;
-    // }
+    function divide() {
+        solution = numArray.reduce((a, b) => Number(a) / Number(b));
+        numArray = [];
+        setDisplayState(solution);
+        return solution;
+    }
+    
+    // the trickiest bit to build for sure! here is a resource: https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
+    function percent() {
+        if (numArray.length >= 1) {
+            let multiply = numArray.reduce((a, b) => Number(a) * Number(b));
+            solution = Number(multiply) / 100;
+            console.log(solution.toString());
+        } else {
+            solution = Number(runningNum) / 100;
+            console.log(solution.toString());
+            runningNum = solution.toString();
+            setDisplayState(runningNum);
+            return runningNum;
+        }
+
+    }
 
     return (
         <>
@@ -88,8 +110,26 @@ const Calculator = () => {
                     >
                         +/-
                     </div>
-                    <div>%</div>
-                    <div>÷</div>
+                    <div
+                        value={'%'}
+                        onClick={() => {
+                            // saveNums();
+                            setMathTypeState('%');
+                            percent();
+                        }}
+                    >
+                        %
+                    </div>
+                    <div
+                        value={'÷'}
+                        onClick={() => {
+                            saveNums();
+                            setMathTypeState('÷');
+                            setDisplayState('');
+                        }}
+                    >
+                        ÷
+                    </div>
                     <div
                         value={'7'}
                         onClick={() => {
@@ -235,6 +275,12 @@ const Calculator = () => {
                                 buildNum(solution);
                             } else if (mathTypeState === 'x') {
                                 multiply();
+                                buildNum(solution);
+                            } else if (mathTypeState === '÷') {
+                                divide();
+                                buildNum(solution);
+                            } else if (mathTypeState === '%') {
+                                percent();
                                 buildNum(solution);
                             }
 

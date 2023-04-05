@@ -78,8 +78,8 @@ span {
 
 .box-outer {
   background-color: var(--mainDark);
-  width: 375px;
-  height: 600px;
+  width: 300px;
+  height: 550px;
   padding: 1em;
   border-radius: 12px;
 }
@@ -87,20 +87,19 @@ span {
 .input-display {
   background-color: var(--light);
   color: var(--mainDark);
-  min-width: 325px;
-  min-height: 80px;
-  margin: 1em;
+  min-width: 275px;
+  min-height: 90px;
+  margin-bottom: 1.5em;
   border-radius: 12px;
   text-align: center;
   font-size: 30px;
   line-height: 80px;
-
 }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  margin: 1em;
+  margin: .56em;
 }
 
 .tools {
@@ -118,23 +117,23 @@ span {
 
 .flex-container>div {
   background-color: var(--secondBlue);
-  width: 65px;
-  height: 65px;
-  margin: 5px;
-  padding: 5px;
+  width: 55px;
+  height: 55px;
+  margin: 3px;
+  padding: 4.5px;
   text-align: center;
   font-size: 25px;
-  line-height: 60px;
+  line-height: 50px;
   border-radius: 50%;
 }
 
 .flex-container>.equals {
-  width: 150px;
-  height: 55px;
+  width: 122px;
+  height: 52px;
   line-height: 55px;
-  margin: 6px;
-  margin-top: 12px;
-  padding: 5px;
+  margin: 5px;
+  margin-top: 8px;
+  padding: 4px;
   border-radius: 12px;
   background-color: var(--mainRed);
 }
