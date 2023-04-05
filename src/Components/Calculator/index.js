@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 let runningNum = '';
 let numArray = [];
-let runningMaths = '';
+// let runningMaths = '';
 let solution = 0;
 const Calculator = () => {
 
@@ -32,9 +32,16 @@ const Calculator = () => {
         return solution;
     }
 
-    function saveMaths(value) {
-        runningMaths = value;
+    function minusNums() {
+        solution = numArray.reduce((a, b) => Number(a) - Number(b));
+        numArray = [];
+        setDisplayState(solution);
+        return solution;
     }
+
+    // function saveMaths(value) {
+    //     runningMaths = value;
+    // }
 
     return (
         <>
@@ -114,7 +121,16 @@ const Calculator = () => {
                     >
                         6
                     </div>
-                    <div>-</div>
+                    <div
+                        value={'-'}
+                        onClick={() => {
+                            saveNums();
+                            setMathTypeState('-');
+                            setDisplayState('');
+                        }}
+                    >
+                        -
+                    </div>
                     <div
                         value={'1'}
                         onClick={() => {
@@ -147,7 +163,7 @@ const Calculator = () => {
                         onClick={() => {
                             // console.log(runningNum);
                             saveNums();
-                            setMathTypeState(`${displayState} +`);
+                            setMathTypeState('+');
                             setDisplayState('');
                             // console.log(numArray);
                         }}
@@ -179,8 +195,20 @@ const Calculator = () => {
                         onClick={() => {
                             setMathTypeState('');
                             saveNums();
-                            addNums();
-                            // setDisplayState('answer');
+                            console.log(mathTypeState);
+                            if (mathTypeState === '+') {
+                                addNums();
+                                buildNum(solution);
+                            } else if (mathTypeState === '-') {
+                                minusNums();
+                                buildNum(solution);
+                            }
+
+                            else {
+                                setDisplayState('answer');
+                            }
+
+
                         }}
 
                     >
