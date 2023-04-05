@@ -1,14 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+let runningNum = '';
+let numArray = [];
+let runningMaths = '';
+let solution = 0;
 const Calculator = () => {
-    const buttonValueArr = ['C', '+/-', '%', '÷', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.'];
-    let key = 0;
-    let runningNum = '';
-    let numArray = [];
-    let runningMaths = '';
-    let solution = 0;
+
+
 
     const [displayState, setDisplayState] = useState('');
     const [mathTypeState, setMathTypeState] = useState('');
@@ -17,19 +16,21 @@ const Calculator = () => {
     // build the user's number by adding characters to strings, later converted to numbers
     function buildNum(value) {
         runningNum += value;
-
+        console.log(numArray);
     }
 
     function saveNums() {
-        numArray.push(displayState);
+        numArray.push(runningNum);
+        console.log(numArray);
         runningNum = '';
     }
-    // this will work vanilla, but not React -- use for reference in construction:
-    // function addNums() {
-    //     solution = numArray.reduce((a, b) => Number(a) + Number(b));
-    //     numArray = [];
-    //     return solution;
-    // }
+
+    function addNums() {
+        solution = numArray.reduce((a, b) => Number(a) + Number(b));
+        numArray = [];
+        setDisplayState(solution);
+        return solution;
+    }
 
     function saveMaths(value) {
         runningMaths = value;
@@ -49,6 +50,7 @@ const Calculator = () => {
                         value={'clear'}
                         onClick={() => {
                             setDisplayState('');
+                            setMathTypeState('');
                             runningNum = '';
                         }}
                     >
@@ -61,7 +63,7 @@ const Calculator = () => {
                         value={'7'}
                         onClick={() => {
                             buildNum('7');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         7
@@ -70,7 +72,7 @@ const Calculator = () => {
                         value={'8'}
                         onClick={() => {
                             buildNum('8');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         8
@@ -79,7 +81,7 @@ const Calculator = () => {
                         value={'9'}
                         onClick={() => {
                             buildNum('9');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         9
@@ -89,7 +91,7 @@ const Calculator = () => {
                         value={'4'}
                         onClick={() => {
                             buildNum('4');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         4
@@ -98,7 +100,7 @@ const Calculator = () => {
                         value={'5'}
                         onClick={() => {
                             buildNum('5');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         5
@@ -107,7 +109,7 @@ const Calculator = () => {
                         value={'6'}
                         onClick={() => {
                             buildNum('6');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         6
@@ -117,7 +119,7 @@ const Calculator = () => {
                         value={'1'}
                         onClick={() => {
                             buildNum('1');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         1
@@ -126,7 +128,7 @@ const Calculator = () => {
                         value={'2'}
                         onClick={() => {
                             buildNum('2');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         2
@@ -135,7 +137,7 @@ const Calculator = () => {
                         value={'3'}
                         onClick={() => {
                             buildNum('3');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         3
@@ -143,10 +145,11 @@ const Calculator = () => {
                     <div
                         value={'+'}
                         onClick={() => {
-                            console.log(runningNum);
+                            // console.log(runningNum);
                             saveNums();
+                            setMathTypeState(`${displayState} +`);
                             setDisplayState('');
-                            console.log(numArray);
+                            // console.log(numArray);
                         }}
                     >
                         +
@@ -155,7 +158,7 @@ const Calculator = () => {
                         value={'0'}
                         onClick={() => {
                             buildNum('0');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         0
@@ -164,7 +167,7 @@ const Calculator = () => {
                         value={'.'}
                         onClick={() => {
                             buildNum('.');
-                            setDisplayState(displayState + runningNum);
+                            setDisplayState(runningNum);
                         }}
                     >
                         .
@@ -174,8 +177,10 @@ const Calculator = () => {
                         value={'='}
                         className="equals"
                         onClick={() => {
-                            // addNums();
-                            setDisplayState('answer');
+                            setMathTypeState('');
+                            saveNums();
+                            addNums();
+                            // setDisplayState('answer');
                         }}
 
                     >
