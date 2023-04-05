@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 let runningNum = '';
 let numArray = [];
-// let runningMaths = '';
 let solution = 0;
 const Calculator = () => {
 
@@ -16,7 +15,6 @@ const Calculator = () => {
     // build the user's number by adding characters to strings, later converted to numbers
     function buildNum(value) {
         runningNum += value;
-        console.log(numArray);
     }
 
     function saveNums() {
@@ -70,7 +68,26 @@ const Calculator = () => {
                     >
                         C
                     </div>
-                    <div>+/-</div>
+                    <div
+                        value={'+/-'}
+                        onClick={() => {
+                            if (runningNum[0] === '-') {
+                                let positive = runningNum.slice(1);
+                                console.log(positive);
+                                runningNum = positive;
+                                setDisplayState(runningNum);
+                            } else {
+                                let splitNum = runningNum.split('');
+                                splitNum.splice(0, 0, '-');
+                                runningNum = splitNum.join('');
+                                console.log(runningNum);
+                                setDisplayState(runningNum);
+                            }
+
+                        }}
+                    >
+                        +/-
+                    </div>
                     <div>%</div>
                     <div>÷</div>
                     <div
