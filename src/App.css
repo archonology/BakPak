@@ -40,6 +40,8 @@ span {
   font-size: 12px;
   float: right;
   margin-right: 2em;
+  margin-top: 2em;
+  padding: 2px;
 }
 
 .backpack {

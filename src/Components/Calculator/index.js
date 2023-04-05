@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 
 // a few globals
 let runningNum = '';
 let numArray = [];
+let runningHist = '';
 let solution = '';
 
 
@@ -13,10 +14,15 @@ const Calculator = () => {
 
     const [displayState, setDisplayState] = useState('');
     const [mathTypeState, setMathTypeState] = useState('');
+    const [historyState, setHistoryState] = useState('');
 
     // build the user's number by adding characters to strings
     function buildNum(value) {
         runningNum += value;
+    }
+
+    function buildHistory(value, math) {
+        setHistoryState(`${value} ${math}`);
     }
 
     // save the runningNum to the global array when the user clicks the various math buttons
@@ -29,6 +35,7 @@ const Calculator = () => {
     function add() {
         solution = numArray.reduce((a, b) => Number(a) + Number(b));
         numArray = [];
+        setHistoryState('');
         setDisplayState(solution);
         return solution;
     }
@@ -74,9 +81,11 @@ const Calculator = () => {
         <>
             <Container className="box-outer">
                 {/* <Row> */}
-                    <div className="input-display">
-                        <h2>{displayState}<span>{mathTypeState}</span></h2>
-                    </div>
+                <div className="input-display">
+
+                    {/* <br></br> */}
+                    <h2>{displayState}<span>{historyState}</span></h2>
+                </div>
                 {/* </Row> */}
                 <div className="flex-container">
 
@@ -85,6 +94,7 @@ const Calculator = () => {
                         onClick={() => {
                             setDisplayState('');
                             setMathTypeState('');
+                            setHistoryState('');
                             runningNum = '';
                         }}
                     >
@@ -234,6 +244,7 @@ const Calculator = () => {
                     <div
                         value={'+'}
                         onClick={() => {
+                            buildHistory(runningNum, '+');
                             saveNums();
                             setMathTypeState('+');
                             setDisplayState('');
@@ -285,7 +296,7 @@ const Calculator = () => {
                             }
 
                             else {
-                                setDisplayState('no maths!');
+                                setDisplayState('BAKPAK!');
                             }
 
 
