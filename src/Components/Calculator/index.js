@@ -53,7 +53,7 @@ const Calculator = () => {
         setDisplayState(solution);
         return solution;
     }
-    
+
     // the trickiest bit to build for sure! here is a resource: https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
     function percent() {
         if (numArray.length >= 1) {
@@ -73,11 +73,11 @@ const Calculator = () => {
     return (
         <>
             <Container className="box-outer">
-                <Row>
-                    <Col className="input-display">
+                {/* <Row> */}
+                    <div className="input-display">
                         <h2>{displayState}<span>{mathTypeState}</span></h2>
-                    </Col>
-                </Row>
+                    </div>
+                {/* </Row> */}
                 <div className="flex-container">
 
                     <div
