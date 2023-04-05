@@ -25,15 +25,22 @@ const Calculator = () => {
         runningNum = '';
     }
 
-    function addNums() {
+    function add() {
         solution = numArray.reduce((a, b) => Number(a) + Number(b));
         numArray = [];
         setDisplayState(solution);
         return solution;
     }
 
-    function minusNums() {
+    function subtract() {
         solution = numArray.reduce((a, b) => Number(a) - Number(b));
+        numArray = [];
+        setDisplayState(solution);
+        return solution;
+    }
+
+    function multiply() {
+        solution = numArray.reduce((a, b) => Number(a) * Number(b));
         numArray = [];
         setDisplayState(solution);
         return solution;
@@ -93,7 +100,16 @@ const Calculator = () => {
                     >
                         9
                     </div>
-                    <div>x</div>
+                    <div
+                        value={'x'}
+                        onClick={() => {
+                            saveNums();
+                            setMathTypeState('x');
+                            setDisplayState('');
+                        }}
+                    >
+                        x
+                    </div>
                     <div
                         value={'4'}
                         onClick={() => {
@@ -161,11 +177,9 @@ const Calculator = () => {
                     <div
                         value={'+'}
                         onClick={() => {
-                            // console.log(runningNum);
                             saveNums();
                             setMathTypeState('+');
                             setDisplayState('');
-                            // console.log(numArray);
                         }}
                     >
                         +
@@ -197,15 +211,18 @@ const Calculator = () => {
                             saveNums();
                             console.log(mathTypeState);
                             if (mathTypeState === '+') {
-                                addNums();
+                                add();
                                 buildNum(solution);
                             } else if (mathTypeState === '-') {
-                                minusNums();
+                                subtract();
+                                buildNum(solution);
+                            } else if (mathTypeState === 'x') {
+                                multiply();
                                 buildNum(solution);
                             }
 
                             else {
-                                setDisplayState('answer');
+                                setDisplayState('no maths!');
                             }
 
 
