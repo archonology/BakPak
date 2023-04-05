@@ -3,38 +3,36 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Calculator = () => {
-    //initialize our input to populate the caculator screen
-    let currentNum = '';
-    let result = '';
-    const [numState, setNumState] = useState('');
-    const [mathState, setMathState] = useState('');
-    let num = numState;
-    const [mathNums, setMathNumState] = useState([num]);
+    const buttonValueArr = ['C', '+/-', '%', '÷', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.'];
+    let key = 0;
+    let runningNum = '';
+    let numArray = [];
+    let runningMaths = '';
+    let solution = 0;
 
-    const addToNum = (value) => setNumState(numState + value);
-    const addToCurrent = (value) => result = currentNum + value;
+    const [displayState, setDisplayState] = useState('');
+    const [mathTypeState, setMathTypeState] = useState('');
+    const [valueState, setValueState] = useState([]);
 
+    // build the user's number by adding characters to strings, later converted to numbers
+    function buildNum(value) {
+        runningNum += value;
 
-    async function handleEquation(value, mathType) {
+    }
 
-        if (mathType === '%') {
-            for (let i = 0; i < mathNums.length; i++) {
-                console.log(mathNums);
-                const solution = mathNums[i] % Number(numState);
-                setNumState(solution);
-                console.log(numState);
-            }
+    function saveNums() {
+        numArray.push(runningNum);
+        runningNum = '';
+    }
 
-        }
-        if (mathType === '+') {
-            for (let i = 0; i < mathNums.length; i++) {
-                console.log(mathNums[i]);
-                const solution = mathNums[i] + Number(numState);
-                setNumState(solution);
-                console.log(numState);
-            }
+    function addNums() {
+        solution = numArray.reduce((a, b) => Number(a) + Number(b));
+        numArray = [];
+        return solution;
+    }
 
-        }
+    function saveMaths(value) {
+        runningMaths = value;
     }
 
     return (
@@ -42,114 +40,54 @@ const Calculator = () => {
             <Container className="box-outer">
                 <Row>
                     <Col className="input-display">
-                        <h2>{numState}<span>{mathState}</span></h2>
+                        <h2>{displayState}<span>{mathTypeState}</span></h2>
                     </Col>
                 </Row>
                 <div className="flex-container">
-                    <div
-                        onClick={() => {
-                            setNumState('');
-                            setMathState('');
-                        }}
-                    >C
-                    </div>
-                    <div value='+/-'>+/-</div>
-                    <div
-                        onClick={() => {
 
-                            console.log(numState);
-                            setMathState('%');
-                            num = Number(numState);
-                            setMathNumState([...mathNums, num]);
-                            setNumState('');
-                            // setMathState('');
-                            console.log(mathNums);
-                        }}
-                    >%</div>
+                    <div>C</div>
+                    <div>+/-</div>
+                    <div>%</div>
                     <div>÷</div>
                     <div
-                        // handle concatenation as user builds there input number
-                        onClick={() => setNumState(numState + '7')}
-                    >7
+                        value={7}
+                        onClick={() => {
+                            buildNum('7');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        7
                     </div>
                     <div
-                        onClick={() => setNumState(numState + '8')}
-                    >8
+                        value={8}
+                        onClick={() => {
+                            buildNum('8');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        8
                     </div>
-                    <div
-                        onClick={() => setNumState(numState + '9')}
-                    >9
-                    </div>
+                    <div>9</div>
                     <div>x</div>
-                    <div
-                        onClick={() => setNumState(numState + '4')}
-                    >4
-                    </div>
-                    <div
-                        onClick={() => setNumState(numState + '5')}
-                    >5
-                    </div>
-                    <div
-                        onClick={() => setNumState(numState + '6')}
-                    >6
-                    </div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
                     <div>-</div>
-                    <div
-                        onClick={() => {
-
-                            addToCurrent('1');
-
-                            if (currentNum === '') {
-                                currentNum = '1';
-                                console.log(result);
-                            } else {
-                                // addToNum('1');
-                                result = currentNum + '1';
-                                currentNum = result;
-                                console.log(result);
-                            }
-
-
-
-                        }}
-
-                    >1
-                    </div>
-                    <div
-                        onClick={() => setNumState(numState + '2')}
-                    >2
-                    </div>
-                    <div
-                        onClick={() => setNumState(numState + '3')}
-                    >3
-                    </div>
-                    <div
-                        onClick={() => {
-                            setMathState('+');
-                            num = Number(currentNum);
-                            console.log(num);
-                            // setMathNumState(num);
-                            setMathNumState([num, ...mathNums]);
-                            setNumState('');
-                            // setMathState('');
-                            console.log(mathNums);
-
-                        }}
-                    >+
-                    </div>
-                    <div
-                        onClick={() => setNumState(numState + '0')}
-                    >0
-                    </div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>+</div>
+                    <div>0</div>
                     <div>.</div>
+
                     <div
                         className="equals"
-                        onClick={() => {
-                            num = Number(numState);
-                            handleEquation(num, mathState);
-                            setMathState('');
-                            // console.log(mathNums);
-                        }}
+                    // onClick={() => {
+                    //     num = Number(numState);
+                    //     handleEquation(num, mathState);
+                    //     setMathState('');
+                    //     // console.log(mathNums);
+                    // }}
                     >=
                     </div>
                 </div>
