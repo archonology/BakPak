@@ -45,12 +45,20 @@ const Calculator = () => {
                 </Row>
                 <div className="flex-container">
 
-                    <div>C</div>
+                    <div
+                        value={'clear'}
+                        onClick={() => {
+                            setDisplayState('');
+                            runningNum = '';
+                        }}
+                    >
+                        C
+                    </div>
                     <div>+/-</div>
                     <div>%</div>
                     <div>÷</div>
                     <div
-                        value={7}
+                        value={'7'}
                         onClick={() => {
                             buildNum('7');
                             setDisplayState(displayState + runningNum);
@@ -59,7 +67,7 @@ const Calculator = () => {
                         7
                     </div>
                     <div
-                        value={8}
+                        value={'8'}
                         onClick={() => {
                             buildNum('8');
                             setDisplayState(displayState + runningNum);
@@ -67,18 +75,90 @@ const Calculator = () => {
                     >
                         8
                     </div>
-                    <div>9</div>
+                    <div
+                        value={'9'}
+                        onClick={() => {
+                            buildNum('9');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        9
+                    </div>
                     <div>x</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
+                    <div
+                        value={'4'}
+                        onClick={() => {
+                            buildNum('4');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        4
+                    </div>
+                    <div
+                        value={'5'}
+                        onClick={() => {
+                            buildNum('5');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        5
+                    </div>
+                    <div
+                        value={'6'}
+                        onClick={() => {
+                            buildNum('6');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        6
+                    </div>
                     <div>-</div>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
+                    <div
+                        value={'1'}
+                        onClick={() => {
+                            buildNum('1');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        1
+                    </div>
+                    <div
+                        value={'2'}
+                        onClick={() => {
+                            buildNum('2');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        2
+                    </div>
+                    <div
+                        value={'3'}
+                        onClick={() => {
+                            buildNum('3');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        3
+                    </div>
                     <div>+</div>
-                    <div>0</div>
-                    <div>.</div>
+                    <div
+                        value={'0'}
+                        onClick={() => {
+                            buildNum('0');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        0
+                    </div>
+                    <div
+                        value={'.'}
+                        onClick={() => {
+                            buildNum('.');
+                            setDisplayState(displayState + runningNum);
+                        }}
+                    >
+                        .
+                    </div>
 
                     <div
                         className="equals"
