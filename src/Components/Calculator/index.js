@@ -6,7 +6,6 @@ import { Container } from "react-bootstrap";
 // a few globals
 let runningNum = '';
 let numArray = [];
-let runningHist = '';
 let solution = '';
 
 
@@ -43,6 +42,7 @@ const Calculator = () => {
     function subtract() {
         solution = numArray.reduce((a, b) => Number(a) - Number(b));
         numArray = [];
+        setHistoryState('');
         setDisplayState(solution);
         return solution;
     }
@@ -50,6 +50,7 @@ const Calculator = () => {
     function multiply() {
         solution = numArray.reduce((a, b) => Number(a) * Number(b));
         numArray = [];
+        setHistoryState('');
         setDisplayState(solution);
         return solution;
     }
@@ -57,23 +58,25 @@ const Calculator = () => {
     function divide() {
         solution = numArray.reduce((a, b) => Number(a) / Number(b));
         numArray = [];
+        setHistoryState('');
         setDisplayState(solution);
         return solution;
     }
 
     // the trickiest bit to build for sure! here is a resource: https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
     function percent() {
-        if (numArray.length >= 1) {
-            let multiply = numArray.reduce((a, b) => Number(a) * Number(b));
-            solution = Number(multiply) / 100;
-            console.log(solution.toString());
-        } else {
-            solution = Number(runningNum) / 100;
-            console.log(solution.toString());
-            runningNum = solution.toString();
-            setDisplayState(runningNum);
-            return runningNum;
-        }
+        // if (mathTypeState) {
+        //     let multiply = numArray.reduce((a, b) => Number(a) * Number(b));
+        //     solution = Number(multiply) / 100;
+        //     console.log(solution.toString());
+        //     numArray = [];
+        // } else {
+        solution = Number(runningNum) / 100;
+        console.log(solution.toString());
+        runningNum = solution.toString();
+        setDisplayState(runningNum);
+        return runningNum;
+        // }
 
     }
 
@@ -133,6 +136,7 @@ const Calculator = () => {
                     <div
                         value={'÷'}
                         onClick={() => {
+                            buildHistory(runningNum, '÷');
                             saveNums();
                             setMathTypeState('÷');
                             setDisplayState('');
@@ -170,6 +174,7 @@ const Calculator = () => {
                     <div
                         value={'x'}
                         onClick={() => {
+                            buildHistory(runningNum, 'x');
                             saveNums();
                             setMathTypeState('x');
                             setDisplayState('');
@@ -207,6 +212,7 @@ const Calculator = () => {
                     <div
                         value={'-'}
                         onClick={() => {
+                            buildHistory(runningNum, '-');
                             saveNums();
                             setMathTypeState('-');
                             setDisplayState('');
@@ -277,7 +283,6 @@ const Calculator = () => {
                         onClick={() => {
                             setMathTypeState('');
                             saveNums();
-                            console.log(mathTypeState);
                             if (mathTypeState === '+') {
                                 add();
                                 buildNum(solution);
@@ -297,6 +302,7 @@ const Calculator = () => {
 
                             else {
                                 setDisplayState('BAKPAK!');
+                                numArray = [];
                             }
 
 

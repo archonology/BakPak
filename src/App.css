@@ -1,20 +1,40 @@
 :root {
-  --mainBlue: rgb(38, 68, 65);
+  --mainBlueDark: rgb(29, 73, 90);
+  --mainBlueLight: rgb(119, 149, 163);
+  --shadowLight: rgb(107, 135, 147);
+  --firstGrayLight: rgb(134, 142, 146);
+  --secGrayLight: rgb(134, 142, 146);
+  --thirdGrayLight: rgb(103, 107, 111);
+  --fourthGrayLight: rgb(102, 112, 117);
+  --fifthGrayLight: rgb(94, 97, 101);
+  --firstGreenLight: rgb(101, 143, 110);
+  --secGreenLight: rgb(67, 124, 79);
+  --firstPinkLight: rgb(247, 207, 230);
+  --secPinkLight: rgb(254, 171, 218);
+  --firstBlueLight: rgb(160, 211, 251);
+  --secBlueLight: rgb(145, 192, 228);
+  --thirdBlueLight: rgb(126, 165, 171);
+  --fourthBlueLight: rgb(126, 165, 171);
+  --firstTealLight: rgb(107, 148, 144);
+  --firstYellowLight: rgb(250, 244, 90);
+  --secYellowLight: rgb(251, 193, 3);
+  --thirdYellowLight: rgb(251, 168, 3);
   --secondBlue: rgb(33, 74, 139);
   --thirdBlue: rgb(46, 68, 103);
   --light: rgb(244, 250, 252);
-  --lesslight: rgb(202, 208, 210);
+  --lesslight: rgb(223, 235, 238);
   --mainDark: rgb(35, 39, 42);
+  --lessDark: rgba(70, 81, 91, 0.71);
   --mainRed: rgb(209, 80, 80);
   --secondRed: rgb(139, 57, 57);
 }
 
 html body {
-  background-color: var(--mainBlue);
+  background-color: var(--mainBlueLight);
   color: var(--light);
   display: flex;
   justify-content: center;
-  margin: 2em;
+  margin: 4rem;
 }
 
 h1 {
@@ -39,13 +59,12 @@ span {
   text-align: right;
   font-size: 12px;
   float: right;
-  margin-right: 2em;
-  margin-top: 2em;
-  padding: 2px;
+  margin-top: 1.5em;
+  padding-right: 6px;
 }
 
 .backpack {
-  background-color: var(--mainDark);
+  background-color: var(--firstPinkLight);
   width: 325px;
   height: 385px;
   padding: 1em;
@@ -58,8 +77,8 @@ span {
 }
 
 .backpack>div {
-  background-color: var(--secondBlue);
-  color: var(--mainDark);
+  background-color: var(--secPinkLight);
+  color: var(--light);
   line-height: 80px;
   font-size: 40px;
   width: 300px;
@@ -69,9 +88,9 @@ span {
 }
 
 .top-pack {
-  border: 2em solid var(--mainDark);
+  border: 2em solid var(--firstBlueLight);
   width: 75px;
-  height: 75px;
+  height: 65px;
   padding: 1em;
   border-radius: 50%;
   margin-left: 6em;
@@ -79,9 +98,9 @@ span {
 }
 
 .box-outer {
-  background-color: var(--mainDark);
+  background-color: var(--secGrayLight);
   width: 300px;
-  height: 500px;
+  height: 475px;
   padding: 1em;
   padding-top: 1.5em;
   border-radius: 12px;
@@ -89,16 +108,19 @@ span {
 
 .input-display {
   background-color: var(--light);
-  color: var(--mainDark);
-  min-width: 250px;
-  min-height: 90px;
-  max-height: 90px;
+  color: var(--thirdGrayLight);
+  min-width: 50px;
+  min-height: 85px;
+  max-height: 85px;
   padding: 2px;
   margin-bottom: .75em;
   border-radius: 12px;
   text-align: center;
-  font-size: 30px;
-  line-height: 12px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
 .flex-container {
@@ -108,20 +130,18 @@ span {
 }
 
 .tools {
-  background-color: var(--mainDark);
-  width: 125px;
-  height: 150px;
-  padding: 1em;
+  min-width: 100px;
+  max-width: 275px;
+  min-height: auto;
+  max-height: auto;
   border-radius: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 12px;
+  margin: 8px;
   justify-content: center;
-  line-height: 40px;
+  transition: .5s;
 }
 
 .flex-container>div {
-  background-color: var(--secondBlue);
+  background-color: var(--fourthGrayLight);
   width: 55px;
   height: 55px;
   margin: 3px;
@@ -141,7 +161,7 @@ span {
   margin-top: 8px;
   padding: 4px;
   border-radius: 12px;
-  background-color: var(--mainRed);
+  background-color: var(--thirdBlueLight);
 }
 
 a:hover {
@@ -149,17 +169,28 @@ a:hover {
 }
 
 .backpack:hover {
-  background-color: var(--secondRed);
+  background-color: var(--firstYellowLight);
+}
+
+.backpack>div:hover {
+  background-color: var(--secYellowLight);
+}
+
+.top-pack:hover {
+  border: 2em solid var(--secBlueLight);
 }
 
 .tools:hover {
-  background-color: var(--secondRed);
+  box-shadow: 6px 7px 12px var(--shadowLight);
 }
 
 .flex-container>div:hover {
-  background-color: var(--thirdBlue);
+  background-color: var(--fifthGrayLight);
 }
 
+
+
 .flex-container>.equals:hover {
-  background-color: var(--secondRed);
+  background-color: var(--firstTealLight);
+  ;
 }
