@@ -7,7 +7,7 @@ const Calculate = () => {
   
     return (
         <>
-           <Nav.Link as={Link} to={'/'}><h4>Back</h4></Nav.Link>
+           <Nav.Link as={Link} to={'/home'}><h4>Back</h4></Nav.Link>
             <Calculator />
         </>
     )

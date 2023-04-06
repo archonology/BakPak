@@ -6,7 +6,7 @@ const Landing = () => {
     return (
         <>     
             <div className="top-pack"></div>
-           <Nav.Link as={Link} to={'/'}><div className="backpack">
+           <Nav.Link as={Link} to={'/home'}><div className="backpack">
                 <div>-----------------</div>
             </div></Nav.Link> 
         </>

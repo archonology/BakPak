@@ -16,9 +16,9 @@ function App() {
           <Header/>
         </div>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route index element={<Home />} />
-          <Route path="/landing" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
+          <Route index element={<Landing />} />
+          <Route path="/home" element={<Home />} />
           <Route path='/calculator' element={<Calculate/>} />
           <Route path="*" element={<Home />} />
         </Routes>
