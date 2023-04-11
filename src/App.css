@@ -110,7 +110,7 @@ span {
   display: flex;
 }
 
-.box-outer {
+.calc-body {
   background-color: var(--secGrayLight);
   width: 300px;
   height: 475px;

@@ -82,7 +82,7 @@ const Calculator = () => {
 
     return (
         <>
-            <Container className="box-outer">
+            <Container className="calc-body">
                 {/* <Row> */}
                 <div className="input-display">
 
