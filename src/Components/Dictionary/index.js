@@ -31,44 +31,51 @@ const FindWord = () => {
 
     return (
         <>
-            <Container className="dictionary-container">
-                <form>
-                    <label htmlFor='search'>Search</label>
-                    <input
-                        id="search"
-                        name="search"
-                        type="text"
-                        placeholder="enter a word"
-                        value={wordState}
-                        onChange={(e) => setWordState(e.target.value)}
-                    ></input>
+            <Container className="dictionary">
+                <Container className="search-container">
+                    
+                    <form className="search-form">
+                        <h2 className="title">Dictionary</h2>
+                        {/* <br></br> */}
+                        {/* <label htmlFor='search' >Search</label> */}
+                        <input
+                            id="search"
+                            name="search"
+                            type="text"
+                            placeholder="enter a word"
+                            value={wordState}
+                            onChange={(e) => setWordState(e.target.value)}
+                        ></input>
+                        <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
+                    </form>
+                </Container>
+                <Container className="dictionary-container">
 
-                    <input type='submit' value={'submit'} onClick={handleFormSubmit}></input>
-                </form>
+                    {/* <h2>{wordState}</h2> */}
+                    {responseState.map((word, index) => {
+                        index = Number(index);
+                        return (
+                            <>
+
+                                <div className="definitions">
+
+                                    <p key={index}>{word.phonetic}</p>
+
+                                    <p>{word.meanings[0].definitions[0].definition}</p>
+
+                                    {word.meanings[0].definitions[1] === true ? (
+                                        <>
+                                            <p>{word.meanings[0].definitions[1].definition}</p>
+                                        </>
+                                    ) : (<></>)}
+
+                                </div>
+
+                            </>
+                        );
+                    })}
+                </Container>
             </Container>
-            {responseState.map((word, index) => {
-                index = Number(index);
-                return (
-                    <>
-
-                        <div >
-                            {/* <h2>{word.word}</h2> */}
-                            <p key={index}>{word.phonetic}</p>
-
-                            <p>{word.meanings[0].definitions[0].definition}</p>
-
-                            {word.meanings[0].definitions[1] === true ? (
-                                <>
-                                    <p>{word.meanings[0].definitions[1].definition}</p>
-                                </>
-                            ) : (<></>)}
-
-                        </div>
-
-                    </>
-                );
-            })}
-
         </>
     )
 }
