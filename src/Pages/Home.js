@@ -2,6 +2,7 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import calcPic from '../images/calcPic.png'
+import dictionaryPic from '../images/dictionPic.png'
 
 const Home = () => {
     return (
@@ -9,18 +10,6 @@ const Home = () => {
             <h2>Pick a Tool</h2>
             <div className="container">
                 <div className="row">
-                <Nav.Link
-                    as={Link}
-                        to={'/calculator'}
-                        className="col-md-12"
-                >
-                    <img
-                        src={calcPic}
-                        alt={'calculator'}
-                        className="tools"
-                    ></img>
-                    </Nav.Link>
-                    
                     <Nav.Link
                         as={Link}
                         to={'/calculator'}
@@ -33,7 +22,19 @@ const Home = () => {
                         ></img>
                     </Nav.Link>
 
-                    
+                    <Nav.Link
+                        as={Link}
+                        to={'/dictionary'}
+                        className="col-md-12"
+                    >
+                        <img
+                            src={dictionaryPic}
+                            alt={'dictionary'}
+                            className="tools"
+                        ></img>
+                    </Nav.Link>
+
+
 
                 </div>
             </div>

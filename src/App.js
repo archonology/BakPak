@@ -5,7 +5,9 @@ import Landing from './Pages/Landing';
 import Home from './Pages/Home'
 import Header from './Components/Header';
 import Calculate from './Pages/Calculator';
+import Dictionary from './Pages/Dictionary';
 import Footer from './Components/Footer';
+
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
           <Route index element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path='/calculator' element={<Calculate />} />
+          <Route path='/dictionary' element={<Dictionary />} />
           <Route path="*" element={<Landing />} />
         </Routes>
         <div>
