@@ -30,7 +30,7 @@ html body {
   color: var(--light);
   display: flex;
   justify-content: center;
-  margin: 4rem;
+  margin: 1rem;
 }
 
 h1 {
@@ -182,7 +182,7 @@ span {
   background-color: var(--secYellowLight);
   padding: .5em;
   padding-top: 0;
-  margin: 1em;
+  margin: 0;
   border-radius: 10px;
   box-shadow: 6px 7px 12px var(--shadowLight);
   max-width: 450px;
@@ -204,6 +204,7 @@ span {
   text-align: center;
   color: var(--dark);
   font-size: 48px;
+  padding: .3em;
 }
 
 #search {
@@ -253,6 +254,15 @@ textarea {
   margin-bottom: 1em;
   margin-top: 0;
   border-radius: 10px;
+}
+
+.error-text {
+    color: black;
+      padding: 1.5em;
+      margin: .2em;
+      margin-bottom: 1em;
+      margin-top: 0;
+      border-radius: 10px;
 }
 
 #search:focus {

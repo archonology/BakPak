@@ -9,6 +9,7 @@ const FindWord = () => {
 
     const [wordState, setWordState] = useState('');
     const [responseState, setResponseState] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -17,11 +18,14 @@ const FindWord = () => {
             const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordState}`);
 
             if (!response.ok) {
+                setErrorMessage("Sorry, we can't find that word.");
+                setResponseState([]);
                 throw new Error("something went wrong!");
             }
 
             const jsonData = await response.json();
-            console.log(jsonData);
+            console.log(jsonData.title);
+            setErrorMessage('');
             setResponseState(jsonData);
 
         } catch (err) {
@@ -36,8 +40,6 @@ const FindWord = () => {
 
                     <form className="search-form">
                         <h2 className="title">Dictionary</h2>
-                        {/* <br></br> */}
-                        {/* <label htmlFor='search' >Search</label> */}
                         <input
                             id="search"
                             name="search"
@@ -50,8 +52,11 @@ const FindWord = () => {
                     </form>
                 </div>
                 <div className="dictionary-container">
-
-                    {/* <h2>{wordState}</h2> */}
+                    {errorMessage && (
+                        <div>
+                            <p className="error-text">{errorMessage}</p>
+                        </div>
+                    )}
                     {responseState.map((word, index) => {
                         index = Number(index);
                         return (
