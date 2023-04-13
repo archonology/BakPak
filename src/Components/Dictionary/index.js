@@ -32,8 +32,8 @@ const FindWord = () => {
     return (
         <>
             <Container className="dictionary">
-                <Container className="search-container">
-                    
+                <div className="search-container">
+
                     <form className="search-form">
                         <h2 className="title">Dictionary</h2>
                         {/* <br></br> */}
@@ -48,8 +48,8 @@ const FindWord = () => {
                         ></input>
                         <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
                     </form>
-                </Container>
-                <Container className="dictionary-container">
+                </div>
+                <div className="dictionary-container">
 
                     {/* <h2>{wordState}</h2> */}
                     {responseState.map((word, index) => {
@@ -74,7 +74,7 @@ const FindWord = () => {
                             </>
                         );
                     })}
-                </Container>
+                </div>
             </Container>
         </>
     )

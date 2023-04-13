@@ -186,6 +186,8 @@ span {
   border-radius: 10px;
   box-shadow: 6px 7px 12px var(--shadowLight);
   max-width: 450px;
+  /* margin: 1em;
+      padding: 1em; */
 }
 
 
@@ -223,15 +225,13 @@ textarea {
 }
 
 .submit {
-  /* margin: 1em; */
-  /* margin-top: .2em; */
   height: auto;
   width: 25%;
   border-radius: 8px;
-  background-color: var(--mainBlueDark);
+  background-color: var(--fifthGrayLight);
   color: var(--light);
   border: none;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .search-container {
@@ -240,7 +240,7 @@ textarea {
 }
 
 .dictionary-container {
-  max-width: 700px;
+  max-width: 390px;
   margin: 1em;
   padding: 1em;
 }
@@ -290,7 +290,7 @@ a:hover {
 }
 
 .submit:hover {
-  background-color: rgb(22, 55, 68);
+  background-color: var(--fourthGrayLight);
 }
 
 @keyframes fadein {
