@@ -16,6 +16,7 @@
   --thirdBlueLight: rgb(126, 165, 171);
   --fourthBlueLight: rgb(126, 165, 171);
   --firstTealLight: rgb(107, 148, 144);
+  --secTealLight: rgb(98, 137, 133);
   --firstYellowLight: rgb(250, 244, 90);
   --secYellowLight: rgb(251, 193, 3);
   --thirdYellowLight: rgb(251, 168, 3);
@@ -140,7 +141,7 @@ span {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  margin: .56em;
+  margin: .5em;
 }
 
 .tools {
@@ -229,7 +230,7 @@ textarea {
   height: auto;
   width: 25%;
   border-radius: 8px;
-  background-color: var(--fifthGrayLight);
+  background-color: var(--firstTealLight);
   color: var(--light);
   border: none;
   font-size: 16px;
@@ -300,7 +301,7 @@ a:hover {
 }
 
 .submit:hover {
-  background-color: var(--fourthGrayLight);
+  background-color: var(--secTealLight);
 }
 
 @keyframes fadein {

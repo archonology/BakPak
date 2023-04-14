@@ -1,15 +1,39 @@
 import React from "react";
 import { useState } from "react";
 import { Container } from "react-bootstrap";
-
+import { getWordsDb, putWordsDb } from "../../utils/database";
 
 
 const FindWord = () => {
 
-
+    // holds user input
     const [wordState, setWordState] = useState('');
+    // holds the response data objects in an array
     const [responseState, setResponseState] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+
+    const [savedWords, setSavedWords] = useState([]);
+
+    const localData = localStorage.getItem('saved_words');
+
+    getWordsDb().then((data) => {
+        console.info('Loaded data from IndexedDB, injecting into dictionary history');
+        setSavedWords(data);
+        // setSavedWords.setValue(data || localData);
+    });
+
+    const handleSavedWords = async (word) => {
+
+        try {
+            setSavedWords([savedWords, wordState]);
+            localStorage.setItem('saved_words', [wordState]);
+            putWordsDb(localStorage.getItem('saved_words'));
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -24,7 +48,7 @@ const FindWord = () => {
             }
 
             const jsonData = await response.json();
-            console.log(jsonData.title);
+            console.log(jsonData);
             setErrorMessage('');
             setResponseState(jsonData);
 
@@ -68,6 +92,10 @@ const FindWord = () => {
 
                                     <p>{word.meanings[0].definitions[0].definition}</p>
 
+                                    <button className="submit" onClick={() => {
+                                        handleSavedWords(word);
+                                    }
+                                       }>save</button>
                                     {word.meanings[0].definitions[1] === true ? (
                                         <>
                                             <p>{word.meanings[0].definitions[1].definition}</p>
