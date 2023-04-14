@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { getWordsDb, putWordsDb } from "../../utils/database";
+import { savedWordsArr } from "../../utils/localStorage";
 
 
 const FindWord = () => {
@@ -16,17 +17,27 @@ const FindWord = () => {
 
     const localData = localStorage.getItem('saved_words');
 
+    // set up useEffect hook to save the words list to localStorage on component unmount
+    // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+    useEffect(() => {
+        return () => {
+            savedWordsArr(savedWords);
+            console.log(savedWords);
+        };
+
+    });
+
     getWordsDb().then((data) => {
         console.info('Loaded data from IndexedDB, injecting into dictionary history');
-        setSavedWords(data);
+        // setSavedWords(data);
         // setSavedWords.setValue(data || localData);
     });
 
     const handleSavedWords = async (word) => {
 
         try {
-            setSavedWords([savedWords, wordState]);
-            localStorage.setItem('saved_words', [wordState]);
+            setSavedWords([...savedWords, wordState]);
+            // localStorage.setItem('saved_words', [wordState]);
             putWordsDb(localStorage.getItem('saved_words'));
         } catch (err) {
             console.error(err);
@@ -95,7 +106,7 @@ const FindWord = () => {
                                     <button className="submit" onClick={() => {
                                         handleSavedWords(word);
                                     }
-                                       }>save</button>
+                                    }>save</button>
                                     {word.meanings[0].definitions[1] === true ? (
                                         <>
                                             <p>{word.meanings[0].definitions[1].definition}</p>
