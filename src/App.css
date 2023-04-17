@@ -28,16 +28,31 @@
 
 html body {
   background-color: var(--mainBlueLight);
-  color: var(--light);
+  color: var(--dark);
   display: flex;
   justify-content: center;
-  margin: 1rem;
+  /* margin: 1rem; */
 }
 
-h1 {
+ul li {
+  color: var(--dark);
+}
+
+
+.bakpakPic {
+  width: 380px;
+  height: 380px;
+  margin-top: 1em;
+  margin-bottom: 3em;
+  border-radius: 10px;
+  /* border: black 1px solid; */
+}
+
+.header {
   margin-top: 1em;
   margin-bottom: .75em;
-  font-size: 50px;
+  font-size: 60px;
+  font-weight: bold;
   -webkit-animation: fadein var(--fadeTime);
   /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein var(--fadeTime);
@@ -47,26 +62,14 @@ h1 {
   -o-animation: fadein var(--fadeTime);
   /* Opera < 12.1 */
   animation: fadein var(--fadeTime);
+  text-align: center;
 }
 
-h3 {
-  margin-top: 2em;
-  margin-left: 5px;
-  font-size: smaller;
-  -webkit-animation: fadein var(--fadeTime);
-  /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein var(--fadeTime);
-  /* Firefox < 16 */
-  -ms-animation: fadein var(--fadeTime);
-  /* Internet Explorer */
-  -o-animation: fadein var(--fadeTime);
-  /* Opera < 12.1 */
-  animation: fadein var(--fadeTime);
-}
 
-a {
+.footer {
+  margin-top: 2rem;
   color: var(--light);
-  text-decoration: none;
+  text-align: center;
 }
 
 span {
@@ -76,40 +79,6 @@ span {
   margin-top: 1.5em;
   padding-right: 7px;
   color: var(--mainBlueLight);
-}
-
-.backpack {
-  background-color: var(--firstPinkLight);
-  width: 325px;
-  height: 385px;
-  padding: 1em;
-  border-radius: 12px;
-  display: flex;
-  flex-wrap: nowrap;
-  margin-left: 0;
-  margin-top: -7em;
-  justify-content: center;
-}
-
-.backpack>div {
-  background-color: var(--secPinkLight);
-  color: var(--light);
-  line-height: 80px;
-  font-size: 40px;
-  width: 300px;
-  height: 190px;
-  margin-top: 190px;
-  border-radius: 12px 12px 0px 0px;
-}
-
-.top-pack {
-  border: 2em solid var(--firstBlueLight);
-  width: 75px;
-  height: 65px;
-  padding: 1em;
-  border-radius: 50%;
-  margin-left: 6em;
-  display: flex;
 }
 
 .calc-body {
@@ -151,7 +120,7 @@ span {
   max-height: auto;
   border-radius: 12px;
   margin: 8px;
-  justify-content: center;
+  /* justify-content: center; */
   transition: .5s;
 }
 
@@ -163,14 +132,14 @@ span {
   padding: 4.5px;
   text-align: center;
   font-size: 25px;
-  line-height: 55px;
+  line-height: 45px;
   border-radius: 50%;
 }
 
 .flex-container>.equals {
-  width: 122px;
+  width: 114px;
   height: 52px;
-  line-height: 45px;
+  line-height: 40px;
   font-size: 35px;
   margin: 5px;
   margin-top: 8px;
@@ -191,7 +160,9 @@ span {
       padding: 1em; */
 }
 
-
+.savedWrds {
+  font-weight: bold;
+}
 
 .search-form {
   display: flex;
@@ -219,6 +190,18 @@ span {
   text-align: center;
 }
 
+.savebtn {
+  background-color: var(--secGreenLight);
+  color: var(--light);
+  padding: .5em;
+  margin: 2em;
+  margin-bottom: 0;
+  margin-top: 0;
+  border-radius: 10px;
+  font-size: x-large;
+  text-align: center;
+}
+
 input[type="text"],
 textarea {
 
@@ -233,7 +216,8 @@ textarea {
   background-color: var(--firstTealLight);
   color: var(--light);
   border: none;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .search-container {
@@ -258,12 +242,17 @@ textarea {
 }
 
 .error-text {
-    color: black;
-      padding: 1.5em;
-      margin: .2em;
-      margin-bottom: 1em;
-      margin-top: 0;
-      border-radius: 10px;
+  color: var(--dark);
+  background-color: var(--firstYellowLight);
+  padding: 1rem;
+  margin: .2em;
+  margin-bottom: 1em;
+  margin-top: 0;
+  border-radius: 10px;
+}
+
+.bakpakPic:hover {
+  box-shadow: 6px 7px 12px var(--shadowLight);
 }
 
 #search:focus {
@@ -271,21 +260,20 @@ textarea {
 }
 
 
-a:hover {
+.footer:hover {
   color: var(--lesslight);
 }
 
-.backpack:hover {
-  background-color: var(--firstYellowLight);
+.header:hover {
+  color: var(--lesslight);
 }
 
-.backpack>div:hover {
-  background-color: var(--secYellowLight);
+h4:hover,
+h5:hover {
+  cursor: pointer;
+  color: var(--lesslight);
 }
 
-.top-pack:hover {
-  border: 2em solid var(--secBlueLight);
-}
 
 .tools:hover {
   box-shadow: 6px 7px 12px var(--shadowLight);
@@ -298,6 +286,15 @@ a:hover {
 .flex-container>.equals:hover {
   background-color: var(--firstTealLight);
   ;
+}
+
+.savebtn:hover {
+  box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.375);
+}
+
+.savedWrds:hover {
+  cursor: pointer;
+  color: var(--fifthGrayLight);
 }
 
 .submit:hover {

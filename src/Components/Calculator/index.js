@@ -82,7 +82,7 @@ const Calculator = () => {
 
     return (
         <>
-            <Container className="calc-body">
+            <div className="calc-body">
                 {/* <Row> */}
                 <div className="input-display">
 
@@ -313,7 +313,7 @@ const Calculator = () => {
                     </div>
 
                 </div>
-            </Container>
+            </div>
         </>
     )
 }

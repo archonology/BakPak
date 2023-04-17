@@ -14,14 +14,14 @@ const initdb = async () =>
     });
 
 // puts content and adds it to the database
-export const putWordsDb = async (word) => {
-    console.log(word);
+export const putWordsDb = async (savedWords) => {
+    console.log(savedWords);
     console.log('PUT to the database');
     const bakPakDB = await openDB('bakpak', 1);
     const transaction = bakPakDB.transaction('bakpak', 'readwrite');
     const store = transaction.objectStore('bakpak');
     //make sure this matches the bakpak entries syntax
-    const request = store.put({ word });
+    const request = store.put({ savedWords });
     const result = await request;
     console.log('Word saved to the database', result);
 };
@@ -34,8 +34,8 @@ export const getWordsDb = async () => {
     const store = transaction.objectStore('bakpak');
     const request = store.getAll();
     const result = await request;
-    console.log('result.value', result.value);
-    return result.value;
+    console.log('result', result);
+    return result;
 };
 
 initdb();
