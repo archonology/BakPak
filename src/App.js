@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Calculate from './Pages/Calculator';
 import Dictionary from './Pages/Dictionary';
 import Footer from './Components/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

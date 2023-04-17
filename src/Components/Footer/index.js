@@ -1,10 +1,11 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 
 
 const Footer = () => {
     return (
         <>
-            <a href="https://www.meherdevs.com"><h3>Made by MeherDevs | 2023</h3></a>
+            <Nav.Link href="https://www.meherdevs.com"><p className="footer">Made by MeherDevs | 2023</p></Nav.Link>
         </>
     )
 }
