@@ -1,8 +1,8 @@
 import React from "react";
 import { Nav, Container, Row, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import calcPic from '../images/calcPic.png'
-import dictionaryPic from '../images/dictionPic.png'
+// import calcPic from '../images/calcPic.png'
+// import dictionaryPic from '../images/dictionPic.png'
 
 const Home = () => {
     return (

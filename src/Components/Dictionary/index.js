@@ -25,9 +25,6 @@ const FindWord = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
-    console.log(responseState);
-
     // set up useEffect hook to save the words list to localStorage on component unmount
     // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
     // useEffect(() => {
@@ -52,7 +49,7 @@ const FindWord = () => {
     const handleSavedWords = (word) => {
 
         for (let i = 0; i < savedWords.length; i++) {
-            console.log(savedWords[i]);
+
             if (savedWords[i] === word) {
                 console.log('word match found');
 
@@ -139,7 +136,7 @@ const FindWord = () => {
                                     <>
                                         <li
                                             className="savedWrds"
-                                            key={crypto.randomUUID()}
+                                            key={word}
                                             onClick={() => {
                                                 setWordState(word);
                                                 handleFetchSaved(word);
