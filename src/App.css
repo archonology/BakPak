@@ -132,7 +132,7 @@ border: 3px solid;
   padding: .5rem;
   border: 1px solid var(--dark);
   text-align: center;
-  margin: .8rem;
+  margin: .5rem;
   background-color: var(--light);
   text-decoration: none;
   color: var(--dark);
@@ -149,12 +149,10 @@ border: 3px solid;
   background-size: 160%;
   background-position: 110%;
   background-repeat: no-repeat;
-background-position-y: bottom;
+  background-position-y: bottom;
 }
 
-.toolNote {
-  
-}
+.toolNote {}
 
 .toolTitle {
   float: right;
@@ -167,16 +165,6 @@ background-position-y: bottom;
 .japanTool {
   font-size: 27px;
 }
-/* .tools {
-  min-width: 100px;
-  max-width: 275px;
-  min-height: auto;
-  max-height: auto;
-  border-radius: 12px;
-  margin: 8px;
-  /* justify-content: center; */
-/* transition: .5s; */
-/* } */
 
 .flex-container>div {
   background-color: var(--fourthGrayLight);
@@ -248,6 +236,7 @@ background-position-y: bottom;
   border-radius: 10px;
   text-align: center;
   box-shadow: -6px 4px var(--dark);
+  color: var(--dark);
 }
 
 .submit {
@@ -256,6 +245,7 @@ background-position-y: bottom;
   text-align: center;
   background-color: var(--lesslight);
   box-shadow: -3px 4px var(--dark);
+  color: black;
 }
 
 .definitions {
@@ -283,6 +273,21 @@ textarea {
 .dictionary-container {
   /* max-width: 600px;
 flex-wrap: wrap; */
+}
+
+.newPost {
+  margin-left: 3em;
+}
+
+.note-box {
+  margin: 5em;
+  padding: 3em;
+  border: 1px solid var(--dark);
+  box-shadow: -6px 8px var(--dark);
+}
+
+.notebook {
+  font-family: 'Yomogi', cursive;
 }
 
 
@@ -317,6 +322,9 @@ flex-wrap: wrap; */
   outline: none;
 }
 
+.notebook:hover {
+  color: var(--dark);
+}
 
 .footer:hover {
   font-weight: 450;
@@ -336,10 +344,10 @@ h5:hover {
 .tools:hover {
   box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
   color: var(--dark);
-  
+
 }
 
-.toolTitle:hover{
+.toolTitle:hover {
   font-weight: 900;
 }
 
@@ -373,7 +381,7 @@ h5:hover {
   background-color: var(--mainBlueLight);
 }
 
-@media screen and (max-width: 1020px){
+@media screen and (max-width: 1020px) {
   .toolCalc {
     background-size: 200%;
     background-position: 90%;

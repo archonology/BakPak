@@ -34,10 +34,26 @@ const Notebook = () => {
                         <Offcanvas.Title >Notebook Entries</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                  
+                    <p className="">4 April 2022 | 5:22pm</p>
+                    <p className="">2 April 2022 | 3:21pm</p>
 
                     </Offcanvas.Body>
-                </Offcanvas>
+            </Offcanvas>
+            
+            <input type='submit' value={'create new post'} className="submit newPost"></input>
+
+            <div className="note-box">
+                <p className="">4 April 2022 | 5:22pm</p>
+                <h4 className="notebook">Dear Diary, Don't forget to collect the software programs from the closet. Else the fish and cats will get into the programming.</h4>
+                
+                {/* <div className="savebtn">save word</div> */}
+            </div>
+            
+{/* 
+            <div className="note-box">
+                <p className="">2 April 2022 | 3:21pm</p>
+                <h4 className="notebook">Dear Diary, if the frog smokes all the cigarettes, call Hiro down at the docks. He knows how to trade tuna cans for smokes.</h4>
+            </div> */}
         </>
     )
 }
