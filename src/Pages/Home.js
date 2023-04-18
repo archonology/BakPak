@@ -8,7 +8,31 @@ const Home = () => {
     return (
         <>
             {/* <h2>Pick a Tool</h2> */}
-            <Container className="">
+            <Container fluid="md" className="justify-content-center">
+                <div className="manga">
+                    <Row>
+                        <Col
+                            xs={11} sm={10} md={7}
+                            className="tools"
+                            as={Link}
+                            to={'/calculator'}>Calculator
+                        </Col>
+
+                        <Col
+                            xs={11} sm={10} md={4}
+                            className="tools"
+                            as={Link}
+                            to={'/dictionary'}>Dictionary
+                        </Col>
+                    </Row>
+                    {/* <Row>
+                    <Col sm className="tools">sm=true</Col>
+                    <Col sm className="tools">sm=true</Col>
+                    <Col sm className="tools">sm=true</Col>
+                </Row> */}
+                </div>
+            </Container>
+            {/* <Container className="">
                 <Row>
                     <Col>
                         <Nav.Link
@@ -38,7 +62,7 @@ const Home = () => {
 
 
                 </Row>
-            </Container>
+            </Container> */}
         </>
     )
 }

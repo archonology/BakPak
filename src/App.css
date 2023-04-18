@@ -5,7 +5,7 @@
   --firstGrayLight: rgb(134, 142, 146);
   --secGrayLight: rgb(134, 142, 146);
   --thirdGrayLight: rgb(103, 107, 111);
-  --fourthGrayLight: rgb(102, 112, 117);
+  --fourthGrayLight: rgb(180, 192, 197);
   --fifthGrayLight: rgb(94, 97, 101);
   --firstGreenLight: rgb(203, 241, 205);
   --secGreenLight: rgb(211, 250, 213);
@@ -13,10 +13,10 @@
   --secPinkLight: rgb(254, 171, 218);
   --firstBlueLight: rgb(160, 211, 251);
   --secBlueLight: rgb(145, 192, 228);
-  --thirdBlueLight: rgb(126, 165, 171);
+  --thirdBlueLight: rgb(148, 207, 216);
   --fourthBlueLight: rgb(126, 165, 171);
-  --firstTealLight: rgb(107, 148, 144);
-  --secTealLight: rgb(98, 137, 133);
+  --firstTealLight: rgb(176, 234, 228);
+  --secTealLight: rgb(153, 231, 225);
   --firstYellowLight: rgb(250, 244, 90);
   --secYellowLight: rgb(251, 193, 3);
   --thirdYellowLight: rgb(251, 168, 3);
@@ -47,8 +47,8 @@ ul li {
 }
 
 .header {
-  margin-top: 1em;
-  margin-bottom: .75em;
+  /* margin-top: 1em; */
+  margin-bottom: .5em;
   font-size: 50px;
   font-weight: bold;
   -webkit-animation: fadein var(--fadeTime);
@@ -61,6 +61,7 @@ ul li {
   /* Opera < 12.1 */
   animation: fadein var(--fadeTime);
   text-align: center;
+  background-color: var(--light);
 }
 
 .header>.japan {
@@ -73,6 +74,16 @@ ul li {
   text-align: center;
 }
 
+.manga {
+  /* padding: 1em; */
+  /* background-color: var(--dark); */
+}
+
+.calc-box {
+  display: flex;
+  justify-content: center;
+}
+
 .calc-body {
   background-color: var(--secGrayLight);
   width: 300px;
@@ -80,23 +91,25 @@ ul li {
   padding: 1em;
   padding-top: 1.5em;
   border-radius: 12px;
+  border: 1px solid var(--dark);
 }
 
 .input-display {
   background-color: var(--light);
-  color: var(--thirdGrayLight);
-  min-width: 50px;
+  color: var(--dark);
+  min-width: 30px;
   min-height: 85px;
   max-height: 85px;
   padding: 2px;
   margin-bottom: .75em;
   border-radius: 12px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: .5rem;
   line-height: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  border: 1px solid var(--dark);
 }
 
 .flex-container {
@@ -106,6 +119,18 @@ ul li {
 }
 
 .tools {
+  min-height: 300px;
+  width: auto;
+  padding: .5rem;
+  border: 1px solid var(--dark);
+  text-align: center;
+  margin: .5rem;
+  background-color: var(--light);
+  text-decoration: none;
+  color: var(--dark);
+}
+
+/* .tools {
   min-width: 100px;
   max-width: 275px;
   min-height: auto;
@@ -113,8 +138,8 @@ ul li {
   border-radius: 12px;
   margin: 8px;
   /* justify-content: center; */
-  transition: .5s;
-}
+  /* transition: .5s; */
+/* } */ 
 
 .flex-container>div {
   background-color: var(--fourthGrayLight);
@@ -126,6 +151,14 @@ ul li {
   font-size: 25px;
   line-height: 45px;
   border-radius: 50%;
+  border: 1px solid var(--dark);
+}
+
+.flex-container>.math {
+  background-color: var(--secBlueLight);
+}
+.flex-container>.clear {
+  background-color: var(--secGreenLight);
 }
 
 .flex-container>.equals {
@@ -248,7 +281,7 @@ flex-wrap: wrap; */
 
 
 .footer:hover {
-  font-weight: 500;
+  font-weight: 450;
 }
 
 .header:hover {
@@ -263,11 +296,19 @@ h5:hover {
 
 
 .tools:hover {
-  box-shadow: 6px 7px 12px var(--shadowLight);
+  box-shadow: 2px 4px 5px var(--dark);
 }
 
 .flex-container>div:hover {
-  background-color: var(--fifthGrayLight);
+  background-color: var(--lesslight);
+}
+
+.flex-container>.clear:hover {
+  background-color: var(--firstGreenLight);
+}
+
+.flex-container>.math:hover {
+  background-color: var(--firstBlueLight);
 }
 
 .flex-container>.equals:hover {
