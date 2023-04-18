@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import Header from './Components/Header';
 import Calculate from './Pages/Calculator';
 import Dictionary from './Pages/Dictionary';
+import Notebook from './Pages/Notebook';
 import Footer from './Components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path='/calculator' element={<Calculate />} />
           <Route path='/dictionary' element={<Dictionary />} />
+          <Route path='/notebook' element={<Notebook />} />
           <Route path="*" element={<Landing />} />
         </Routes>
         <div>

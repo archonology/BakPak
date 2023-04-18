@@ -28,6 +28,16 @@ const Home = () => {
                             to={'/dictionary'}><h2 className="toolTitle">Dictionary <span className="japanTool"><br></br>辞書</span></h2>
                             <br></br>
                         </Col>
+                        <Col
+                            xs={11} sm={10} md={11}
+                            className="tools toolNote"
+                            as={Link}
+                            to={'/notebook'}
+                        >
+                            <h2 className="toolTitle">Notebook <span className="japanTool"><br></br>
+                                ノート</span></h2>
+                            <br></br>
+                        </Col>
                     </Row>
                     {/* <Row>
                     <Col sm className="tools">sm=true</Col>

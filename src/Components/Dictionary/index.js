@@ -116,7 +116,7 @@ const FindWord = () => {
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Words</em></Nav.Link>
+                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Entries</em></Nav.Link>
                 </Nav.Item>
             </Nav>
 
