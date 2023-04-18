@@ -26,6 +26,7 @@ const FindWord = () => {
     const handleShow = () => setShow(true);
 
 
+    console.log(responseState);
 
     // set up useEffect hook to save the words list to localStorage on component unmount
     // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -48,11 +49,35 @@ const FindWord = () => {
 
 
 
-    const handleSavedWords = async (word) => {
+    const handleSavedWords = (word) => {
+
+        for (let i = 0; i < savedWords.length; i++) {
+            console.log(savedWords[i]);
+            if (savedWords[i] === word) {
+                console.log('word match found');
+
+                return setErrorMessage(`The word ${word} has already been saved.`);
+            }
+        }
+        setSavedWords([...savedWords, word]);
+        putWordsDb(word);
+        setErrorMessage(`${wordState} has been saved.`);
+    }
+
+    const handleFetchSaved = async (word) => {
 
         try {
-            setSavedWords([...savedWords, word]);
-            putWordsDb(word);
+            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+
+            if (!response.ok) {
+                setErrorMessage("Sorry, we can't find that word.");
+                setResponseState([]);
+                throw new Error("something went wrong!");
+            }
+
+            const jsonData = await response.json();
+            setErrorMessage('');
+            setResponseState(jsonData);
 
         } catch (err) {
             console.error(err);
@@ -88,7 +113,7 @@ const FindWord = () => {
 
             <Nav className="justify-content-center mb-5" activeKey="/home">
                 <Nav.Item>
-                    <Nav.Link as={Link} to={'/dictionary'}><strong className="diction-nav title">Dictionary</strong></Nav.Link>
+                    <Nav.Link as={Link} to={'/dictionary'}><strong className="title">Dictionary</strong></Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">Back to Pak</em> </Nav.Link>
@@ -117,6 +142,8 @@ const FindWord = () => {
                                             key={crypto.randomUUID()}
                                             onClick={() => {
                                                 setWordState(word);
+                                                handleFetchSaved(word);
+                                                setShow(false);
                                             }}>{word}</li>
                                     </>
                                 )
@@ -128,8 +155,8 @@ const FindWord = () => {
                 </Offcanvas>
                 <div className="dictionary">
                     <div className="search-container">
- 
-                        
+
+
                         <form className="search-form">
 
                             <input
@@ -142,47 +169,52 @@ const FindWord = () => {
                             ></input>
                             <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
                         </form>
-                        
-                    </div>
-                    {errorMessage && (
-                        <div>
-                            <p className="error-text">{errorMessage}</p>
-                        </div>
-                    )}
 
-                    <div className="dictionary-container d-flex justify-content-center">
+                    </div>
+
+                    <div className="dictionary-container">
 
                         {responseState?.map((word) => {
 
                             return (
                                 <>
                                     <div className="def-box">
-                                        <div key={crypto.randomUUID()} className="definitions col-12">
+                                        <div key={crypto.randomUUID()} className="definitions">
 
-                                            <p >{word.phonetic}</p>
+                                            {/* <p >{word.phonetic}</p> */}
 
                                             <p >{word.meanings[0].definitions[0].definition}</p>
-                                            <div className="savebtn" onClick={() => {
-                                                if (wordState) {
-                                                    handleSavedWords(wordState);
-                                                    setErrorMessage(`The word ${wordState} was saved!`);
-                                                } else {
-                                                    setErrorMessage('Nothing to save yet');
-                                                }
-
-                                            }
-                                            }>save word</div>
+                                            {word.meanings[0].definitions[1] ? (
+                                                <>
+                                                    <hr></hr>
+                                                    <p>{word.meanings[0].definitions[1].definition}</p>
+                                                </>
+                                            ) : (<></>)}
+                                            <hr></hr>
                                         </div>
 
+
                                     </div>
-                                    <hr></hr>
+
                                 </>
 
                             );
                         })}
+                        {errorMessage && (
+                            <div>
+                                <p className="error-text"><em>{errorMessage}</em></p>
+                            </div>
+                        )}
                     </div>
-                </div>
+                    {responseState.length !== 0 ? (<>   <div className="savebtn" onClick={() => {
 
+                        handleSavedWords(wordState);
+
+                    }
+                    }>save word</div></>
+                    ) : (<></>)}
+
+                </div>
             </section>
             <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossOrigin="true"></script>
 

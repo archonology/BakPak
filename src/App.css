@@ -7,8 +7,8 @@
   --thirdGrayLight: rgb(103, 107, 111);
   --fourthGrayLight: rgb(102, 112, 117);
   --fifthGrayLight: rgb(94, 97, 101);
-  --firstGreenLight: rgb(182, 251, 187);
-  --secGreenLight: rgb(156, 251, 162);
+  --firstGreenLight: rgb(203, 241, 205);
+  --secGreenLight: rgb(211, 250, 213);
   --firstPinkLight: rgb(247, 207, 230);
   --secPinkLight: rgb(254, 171, 218);
   --firstBlueLight: rgb(160, 211, 251);
@@ -20,7 +20,7 @@
   --firstYellowLight: rgb(250, 244, 90);
   --secYellowLight: rgb(251, 193, 3);
   --thirdYellowLight: rgb(251, 168, 3);
-  --light: rgb(244, 250, 252);
+  --light: rgb(252, 251, 244);
   --lesslight: rgb(223, 235, 238);
   --dark: rgb(45, 47, 48);
   --fadeTime: 3s;
@@ -68,10 +68,9 @@ ul li {
 }
 
 .footer {
-  margin-top: 5rem;
+  margin-top: 7rem;
   color: var(--dark);
   text-align: center;
-  position: absolute center;
 }
 
 .calc-body {
@@ -165,6 +164,7 @@ ul li {
 .title {
   font-size: 16px;
   line-height: 24px;
+  color: var(--dark);
 }
 
 #search {
@@ -201,14 +201,17 @@ textarea {
 .savebtn {
   padding: .2rem;
   width: 100px;
-  background-color: var(--secGreenLight);
+  background-color: var(--firstGreenLight);
   text-align: center;
   border-radius: 8px;
+  float: right;
+  margin-right: 2rem;
+  box-shadow: -3px 4px var(--dark);
 }
 
 .dictionary-container {
-  max-width: 600px;
-flex-wrap: wrap;
+  /* max-width: 600px;
+flex-wrap: wrap; */
 }
 
 
@@ -220,11 +223,23 @@ flex-wrap: wrap;
   margin-top: 1rem;
   border-radius: 10px;
   text-align: center;
-
+  -webkit-animation: fadein var(--fadeTime);
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein var(--fadeTime);
+    /* Firefox < 16 */
+    -ms-animation: fadein var(--fadeTime);
+    /* Internet Explorer */
+    -o-animation: fadein var(--fadeTime);
+    /* Opera < 12.1 */
+    animation: fadein var(--fadeTime);
 }
 
 .bakpakPic:hover {
   box-shadow: 6px 7px 12px var(--shadowLight);
+}
+
+.diction-nav:hover{
+  font-weight: 450;
 }
 
 #search:focus {
@@ -233,7 +248,7 @@ flex-wrap: wrap;
 
 
 .footer:hover {
-  color: var(--secGrayLight);
+  font-weight: 500;
 }
 
 .header:hover {
@@ -261,7 +276,7 @@ h5:hover {
 }
 
 .savebtn:hover {
-  background-color: var(--firstGreenLight);
+  background-color: var(--secGreenLight);
 }
 
 .savedWrds:hover {

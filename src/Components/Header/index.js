@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <>
             <Nav.Link as={Link} to={'/'} ><h1 className="header">BAKPAK!<span className="japan">バックパック</span></h1></Nav.Link>
+            <hr></hr>
         </>
     )
 }
