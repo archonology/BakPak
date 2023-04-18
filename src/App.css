@@ -111,6 +111,15 @@ border: 3px solid;
   border: 1px solid var(--dark);
 }
 
+.input-history {
+  text-align: right;
+  font-size: 12px;
+  float: right;
+  margin-top: 1.5em;
+  padding-right: 7px;
+  color: var(--mainBlueDark);
+}
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;

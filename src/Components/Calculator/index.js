@@ -99,7 +99,7 @@ const Calculator = () => {
                     <div className="input-display">
 
                         <br></br>
-                        <h3>{displayState}<span>{historyState}</span></h3>
+                        <h3>{displayState}<span className="input-history">{historyState}</span></h3>
                     </div>
                     {/* </Row> */}
                     <div className="flex-container">
