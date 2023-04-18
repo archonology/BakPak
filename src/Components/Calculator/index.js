@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 // a few globals
@@ -11,6 +12,7 @@ let solution = '';
 
 const Calculator = () => {
 
+    console.log(runningNum);
     const [displayState, setDisplayState] = useState('');
     const [mathTypeState, setMathTypeState] = useState('');
     const [historyState, setHistoryState] = useState('');
@@ -82,238 +84,255 @@ const Calculator = () => {
 
     return (
         <>
-            <div className="calc-body">
-                {/* <Row> */}
-                <div className="input-display">
+            <Nav className="justify-content-center mb-5" activeKey="/home">
+                <Nav.Item>
+                    <Nav.Link as={Link} to={'/calculator'}><strong className="title">Calculator</strong></Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link as={Link} to={'/home'}><em className="diction-nav">Back to Pak</em> </Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <section className="calc-box">
+                <div className="calc-body">
+                    {/* <Row> */}
+                    <div className="input-display">
 
-                    {/* <br></br> */}
-                    <h2>{displayState}<span>{historyState}</span></h2>
-                </div>
-                {/* </Row> */}
-                <div className="flex-container">
+                        <br></br>
+                        <h3>{displayState}<span>{historyState}</span></h3>
+                    </div>
+                    {/* </Row> */}
+                    <div className="flex-container">
 
-                    <div
-                        value={'clear'}
-                        onClick={() => {
-                            setDisplayState('');
-                            setMathTypeState('');
-                            setHistoryState('');
-                            runningNum = '';
-                        }}
-                    >
-                        C
-                    </div>
-                    <div
-                        value={'+/-'}
-                        onClick={() => {
-                            if (runningNum[0] === '-') {
-                                let positive = runningNum.slice(1);
-                                console.log(positive);
-                                runningNum = positive;
-                                setDisplayState(runningNum);
-                            } else {
-                                let splitNum = runningNum.split('');
-                                splitNum.splice(0, 0, '-');
-                                runningNum = splitNum.join('');
-                                console.log(runningNum);
-                                setDisplayState(runningNum);
-                            }
+                        <div
+                            className="clear"
+                            value={'clear'}
+                            onClick={() => {
+                                setDisplayState('');
+                                setMathTypeState('');
+                                setHistoryState('');
+                                runningNum = '';
+                            }}
+                        >
+                            C
+                        </div>
+                        <div
+                            className="math"
+                            value={'+/-'}
+                            onClick={() => {
+                                if (runningNum[0] === '-') {
+                                    let positive = runningNum.slice(1);
+                                    console.log(positive);
+                                    runningNum = positive;
+                                    setDisplayState(runningNum);
+                                } else {
+                                    let splitNum = runningNum.split('');
+                                    splitNum.splice(0, 0, '-');
+                                    runningNum = splitNum.join('');
+                                    console.log(runningNum);
+                                    setDisplayState(runningNum);
+                                }
 
-                        }}
-                    >
-                        +/-
-                    </div>
-                    <div
-                        value={'%'}
-                        onClick={() => {
-                            // saveNums();
-                            setMathTypeState('%');
-                            percent();
-                        }}
-                    >
-                        %
-                    </div>
-                    <div
-                        value={'÷'}
-                        onClick={() => {
-                            buildHistory(runningNum, '÷');
-                            saveNums();
-                            setMathTypeState('÷');
-                            setDisplayState('');
-                        }}
-                    >
-                        ÷
-                    </div>
-                    <div
-                        value={'7'}
-                        onClick={() => {
-                            buildNum('7');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        7
-                    </div>
-                    <div
-                        value={'8'}
-                        onClick={() => {
-                            buildNum('8');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        8
-                    </div>
-                    <div
-                        value={'9'}
-                        onClick={() => {
-                            buildNum('9');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        9
-                    </div>
-                    <div
-                        value={'x'}
-                        onClick={() => {
-                            buildHistory(runningNum, 'x');
-                            saveNums();
-                            setMathTypeState('x');
-                            setDisplayState('');
-                        }}
-                    >
-                        x
-                    </div>
-                    <div
-                        value={'4'}
-                        onClick={() => {
-                            buildNum('4');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        4
-                    </div>
-                    <div
-                        value={'5'}
-                        onClick={() => {
-                            buildNum('5');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        5
-                    </div>
-                    <div
-                        value={'6'}
-                        onClick={() => {
-                            buildNum('6');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        6
-                    </div>
-                    <div
-                        value={'-'}
-                        onClick={() => {
-                            buildHistory(runningNum, '-');
-                            saveNums();
-                            setMathTypeState('-');
-                            setDisplayState('');
-                        }}
-                    >
-                        -
-                    </div>
-                    <div
-                        value={'1'}
-                        onClick={() => {
-                            buildNum('1');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        1
-                    </div>
-                    <div
-                        value={'2'}
-                        onClick={() => {
-                            buildNum('2');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        2
-                    </div>
-                    <div
-                        value={'3'}
-                        onClick={() => {
-                            buildNum('3');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        3
-                    </div>
-                    <div
-                        value={'+'}
-                        onClick={() => {
-                            buildHistory(runningNum, '+');
-                            saveNums();
-                            setMathTypeState('+');
-                            setDisplayState('');
-                        }}
-                    >
-                        +
-                    </div>
-                    <div
-                        value={'0'}
-                        onClick={() => {
-                            buildNum('0');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        0
-                    </div>
-                    <div
-                        value={'.'}
-                        onClick={() => {
-                            buildNum('.');
-                            setDisplayState(runningNum);
-                        }}
-                    >
-                        .
-                    </div>
-
-                    <div
-                        value={'='}
-                        className="equals"
-                        onClick={() => {
-                            setMathTypeState('');
-                            saveNums();
-                            if (mathTypeState === '+') {
-                                add();
-                                buildNum(solution);
-                            } else if (mathTypeState === '-') {
-                                subtract();
-                                buildNum(solution);
-                            } else if (mathTypeState === 'x') {
-                                multiply();
-                                buildNum(solution);
-                            } else if (mathTypeState === '÷') {
-                                divide();
-                                buildNum(solution);
-                            } else if (mathTypeState === '%') {
+                            }}
+                        >
+                            +/-
+                        </div>
+                        <div
+                            className="math"
+                            value={'%'}
+                            onClick={() => {
+                                // saveNums();
+                                setMathTypeState('%');
                                 percent();
-                                buildNum(solution);
-                            }
+                            }}
+                        >
+                            %
+                        </div>
+                        <div
+                            className="math"
+                            value={'÷'}
+                            onClick={() => {
+                                buildHistory(runningNum, '÷');
+                                saveNums();
+                                setMathTypeState('÷');
+                                setDisplayState('');
+                            }}
+                        >
+                            ÷
+                        </div>
+                        <div
+                            value={'7'}
+                            onClick={() => {
+                                buildNum('7');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            7
+                        </div>
+                        <div
+                            value={'8'}
+                            onClick={() => {
+                                buildNum('8');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            8
+                        </div>
+                        <div
+                            value={'9'}
+                            onClick={() => {
+                                buildNum('9');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            9
+                        </div>
+                        <div
+                            className="math"
+                            value={'x'}
+                            onClick={() => {
+                                buildHistory(runningNum, 'x');
+                                saveNums();
+                                setMathTypeState('x');
+                                setDisplayState('');
+                            }}
+                        >
+                            x
+                        </div>
+                        <div
+                            value={'4'}
+                            onClick={() => {
+                                buildNum('4');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            4
+                        </div>
+                        <div
+                            value={'5'}
+                            onClick={() => {
+                                buildNum('5');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            5
+                        </div>
+                        <div
+                            value={'6'}
+                            onClick={() => {
+                                buildNum('6');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            6
+                        </div>
+                        <div
+                            className="math"
+                            value={'-'}
+                            onClick={() => {
+                                buildHistory(runningNum, '-');
+                                saveNums();
+                                setMathTypeState('-');
+                                setDisplayState('');
+                            }}
+                        >
+                            -
+                        </div>
+                        <div
+                            value={'1'}
+                            onClick={() => {
+                                buildNum('1');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            1
+                        </div>
+                        <div
+                            value={'2'}
+                            onClick={() => {
+                                buildNum('2');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            2
+                        </div>
+                        <div
+                            value={'3'}
+                            onClick={() => {
+                                buildNum('3');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            3
+                        </div>
+                        <div
+                            className="math"
+                            value={'+'}
+                            onClick={() => {
+                                buildHistory(runningNum, '+');
+                                saveNums();
+                                setMathTypeState('+');
+                                setDisplayState('');
+                            }}
+                        >
+                            +
+                        </div>
+                        <div
+                            value={'0'}
+                            onClick={() => {
+                                buildNum('0');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            0
+                        </div>
+                        <div
+                            value={'.'}
+                            onClick={() => {
+                                buildNum('.');
+                                setDisplayState(runningNum);
+                            }}
+                        >
+                            .
+                        </div>
 
-                            else {
-                                setDisplayState('BAKPAK!');
-                                numArray = [];
-                            }
+                        <div
+                            value={'='}
+                            className="equals"
+                            onClick={() => {
+                                setMathTypeState('');
+                                saveNums();
+                                if (mathTypeState === '+') {
+                                    add();
+                                    buildNum(solution);
+                                } else if (mathTypeState === '-') {
+                                    subtract();
+                                    buildNum(solution);
+                                } else if (mathTypeState === 'x') {
+                                    multiply();
+                                    buildNum(solution);
+                                } else if (mathTypeState === '÷') {
+                                    divide();
+                                    buildNum(solution);
+                                } else if (mathTypeState === '%') {
+                                    percent();
+                                    buildNum(solution);
+                                }
+
+                                else {
+                                    setDisplayState('BAKPAK!');
+                                    numArray = [];
+                                }
 
 
-                        }}
+                            }}
 
-                    >
-                        =
+                        >
+                            =
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
+            </section>
         </>
     )
 }

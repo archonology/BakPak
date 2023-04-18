@@ -1,37 +1,35 @@
 :root {
   --mainBlueDark: rgb(29, 73, 90);
-  --mainBlueLight: rgb(119, 149, 163);
+  --mainBlueLight: rgb(165, 219, 245);
   --shadowLight: rgb(107, 135, 147);
   --firstGrayLight: rgb(134, 142, 146);
   --secGrayLight: rgb(134, 142, 146);
   --thirdGrayLight: rgb(103, 107, 111);
-  --fourthGrayLight: rgb(102, 112, 117);
+  --fourthGrayLight: rgb(180, 192, 197);
   --fifthGrayLight: rgb(94, 97, 101);
-  --firstGreenLight: rgb(101, 143, 110);
-  --secGreenLight: rgb(67, 124, 79);
+  --firstGreenLight: rgb(203, 241, 205);
+  --secGreenLight: rgb(211, 250, 213);
   --firstPinkLight: rgb(247, 207, 230);
   --secPinkLight: rgb(254, 171, 218);
   --firstBlueLight: rgb(160, 211, 251);
   --secBlueLight: rgb(145, 192, 228);
-  --thirdBlueLight: rgb(126, 165, 171);
+  --thirdBlueLight: rgb(148, 207, 216);
   --fourthBlueLight: rgb(126, 165, 171);
-  --firstTealLight: rgb(107, 148, 144);
-  --secTealLight: rgb(98, 137, 133);
+  --firstTealLight: rgb(176, 234, 228);
+  --secTealLight: rgb(153, 231, 225);
   --firstYellowLight: rgb(250, 244, 90);
   --secYellowLight: rgb(251, 193, 3);
   --thirdYellowLight: rgb(251, 168, 3);
-  --light: rgb(244, 250, 252);
+  --light: rgb(252, 251, 244);
   --lesslight: rgb(223, 235, 238);
   --dark: rgb(45, 47, 48);
   --fadeTime: 3s;
 }
 
 html body {
-  background-color: var(--mainBlueLight);
+  background-color: var(--light);
   color: var(--dark);
-  display: flex;
-  justify-content: center;
-  /* margin: 1rem; */
+  margin: .5rem;
 }
 
 ul li {
@@ -49,9 +47,9 @@ ul li {
 }
 
 .header {
-  margin-top: 1em;
-  margin-bottom: .75em;
-  font-size: 60px;
+  /* margin-top: 1em; */
+  margin-bottom: .5em;
+  font-size: 50px;
   font-weight: bold;
   -webkit-animation: fadein var(--fadeTime);
   /* Safari, Chrome and Opera > 12.1 */
@@ -63,22 +61,27 @@ ul li {
   /* Opera < 12.1 */
   animation: fadein var(--fadeTime);
   text-align: center;
+  background-color: var(--light);
 }
 
+.header>.japan {
+  font-size: 18px;
+}
 
 .footer {
-  margin-top: 2rem;
-  color: var(--light);
+  margin-top: 7rem;
+  color: var(--dark);
   text-align: center;
 }
 
-span {
-  text-align: right;
-  font-size: 12px;
-  float: right;
-  margin-top: 1.5em;
-  padding-right: 7px;
-  color: var(--mainBlueLight);
+.manga {
+  /* padding: 1em; */
+  /* background-color: var(--dark); */
+}
+
+.calc-box {
+  display: flex;
+  justify-content: center;
 }
 
 .calc-body {
@@ -88,23 +91,25 @@ span {
   padding: 1em;
   padding-top: 1.5em;
   border-radius: 12px;
+  border: 1px solid var(--dark);
 }
 
 .input-display {
   background-color: var(--light);
-  color: var(--thirdGrayLight);
-  min-width: 50px;
+  color: var(--dark);
+  min-width: 30px;
   min-height: 85px;
   max-height: 85px;
   padding: 2px;
   margin-bottom: .75em;
   border-radius: 12px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: .5rem;
   line-height: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  border: 1px solid var(--dark);
 }
 
 .flex-container {
@@ -114,6 +119,18 @@ span {
 }
 
 .tools {
+  min-height: 300px;
+  width: auto;
+  padding: .5rem;
+  border: 1px solid var(--dark);
+  text-align: center;
+  margin: .5rem;
+  background-color: var(--light);
+  text-decoration: none;
+  color: var(--dark);
+}
+
+/* .tools {
   min-width: 100px;
   max-width: 275px;
   min-height: auto;
@@ -121,8 +138,8 @@ span {
   border-radius: 12px;
   margin: 8px;
   /* justify-content: center; */
-  transition: .5s;
-}
+  /* transition: .5s; */
+/* } */ 
 
 .flex-container>div {
   background-color: var(--fourthGrayLight);
@@ -134,6 +151,14 @@ span {
   font-size: 25px;
   line-height: 45px;
   border-radius: 50%;
+  border: 1px solid var(--dark);
+}
+
+.flex-container>.math {
+  background-color: var(--secBlueLight);
+}
+.flex-container>.clear {
+  background-color: var(--secGreenLight);
 }
 
 .flex-container>.equals {
@@ -148,21 +173,19 @@ span {
   background-color: var(--thirdBlueLight);
 }
 
-.dictionary {
-  background-color: var(--secYellowLight);
-  padding: .5em;
-  padding-top: 0;
-  margin: 0;
-  border-radius: 10px;
-  box-shadow: 6px 7px 12px var(--shadowLight);
-  max-width: 450px;
-  /* margin: 1em;
-      padding: 1em; */
+
+.diction-nav {
+  color: var(--dark);
+}
+
+.viewSaved {
+  font-size: 20px;
 }
 
 .savedWrds {
   font-weight: bold;
 }
+
 
 .search-form {
   display: flex;
@@ -172,87 +195,84 @@ span {
 }
 
 .title {
-  width: 100%;
-  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
   color: var(--dark);
-  font-size: 48px;
-  padding: .3em;
 }
 
 #search {
   margin-right: 5px;
-  width: 60%;
-  height: auto;
+  max-width: 400px;
+  height: 50px;
   padding: .5em;
-  font-size: 22px;
-  border: none;
+  font-size: 20px;
+  border: 1px var(--dark) solid;
   border-radius: 10px;
   text-align: center;
-}
-
-.savebtn {
-  background-color: var(--secGreenLight);
-  color: var(--light);
-  padding: .5em;
-  margin: 2em;
-  margin-bottom: 0;
-  margin-top: 0;
-  border-radius: 10px;
-  font-size: x-large;
-  text-align: center;
-}
-
-input[type="text"],
-textarea {
-
-  background-color: var(--light);
-
+    box-shadow: -6px 4px  var(--dark);
 }
 
 .submit {
-  height: auto;
-  width: 25%;
-  border-radius: 8px;
-  background-color: var(--firstTealLight);
-  color: var(--light);
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.search-container {
-  margin: 1em;
-  padding: 1em;
-}
-
-.dictionary-container {
-  max-width: 390px;
-  margin: 1em;
-  padding: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--lesslight);
+  box-shadow: -3px 4px var(--dark);
 }
 
 .definitions {
-  background-color: var(--light);
-  color: black;
-  padding: 1.5em;
-  margin: .2em;
   margin-bottom: 1em;
-  margin-top: 0;
-  border-radius: 10px;
+  margin: 2rem;
 }
+
+
+input[type="text"],
+textarea {
+  background-color: var(--light);
+}
+
+.savebtn {
+  padding: .2rem;
+  width: 100px;
+  background-color: var(--firstGreenLight);
+  text-align: center;
+  border-radius: 8px;
+  float: right;
+  margin-right: 2rem;
+  box-shadow: -3px 4px var(--dark);
+}
+
+.dictionary-container {
+  /* max-width: 600px;
+flex-wrap: wrap; */
+}
+
 
 .error-text {
   color: var(--dark);
-  background-color: var(--firstYellowLight);
-  padding: 1rem;
+  /* background-color: var(--secBlueLight); */
   margin: .2em;
   margin-bottom: 1em;
-  margin-top: 0;
+  margin-top: 1rem;
   border-radius: 10px;
+  text-align: center;
+  -webkit-animation: fadein var(--fadeTime);
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein var(--fadeTime);
+    /* Firefox < 16 */
+    -ms-animation: fadein var(--fadeTime);
+    /* Internet Explorer */
+    -o-animation: fadein var(--fadeTime);
+    /* Opera < 12.1 */
+    animation: fadein var(--fadeTime);
 }
 
 .bakpakPic:hover {
   box-shadow: 6px 7px 12px var(--shadowLight);
+}
+
+.diction-nav:hover{
+  font-weight: 450;
 }
 
 #search:focus {
@@ -261,11 +281,11 @@ textarea {
 
 
 .footer:hover {
-  color: var(--lesslight);
+  font-weight: 450;
 }
 
 .header:hover {
-  color: var(--lesslight);
+  color: red;
 }
 
 h4:hover,
@@ -276,11 +296,19 @@ h5:hover {
 
 
 .tools:hover {
-  box-shadow: 6px 7px 12px var(--shadowLight);
+  box-shadow: 2px 4px 5px var(--dark);
 }
 
 .flex-container>div:hover {
-  background-color: var(--fifthGrayLight);
+  background-color: var(--lesslight);
+}
+
+.flex-container>.clear:hover {
+  background-color: var(--firstGreenLight);
+}
+
+.flex-container>.math:hover {
+  background-color: var(--firstBlueLight);
 }
 
 .flex-container>.equals:hover {
@@ -289,7 +317,7 @@ h5:hover {
 }
 
 .savebtn:hover {
-  box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.375);
+  background-color: var(--secGreenLight);
 }
 
 .savedWrds:hover {
@@ -298,7 +326,7 @@ h5:hover {
 }
 
 .submit:hover {
-  background-color: var(--secTealLight);
+  background-color: var(--mainBlueLight);
 }
 
 @keyframes fadein {
