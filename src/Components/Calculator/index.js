@@ -24,6 +24,7 @@ const Calculator = () => {
 
     function buildHistory(value, math) {
         setHistoryState(`${value} ${math}`);
+        console.log(math);
     }
 
     // save the runningNum to the global array when the user clicks the various math buttons
@@ -89,7 +90,7 @@ const Calculator = () => {
                     <Nav.Link as={Link} to={'/calculator'}><strong className="title">Calculator</strong></Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link as={Link} to={'/home'}><em className="diction-nav">Back to Pak</em> </Nav.Link>
+                    <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
             </Nav>
             <section className="calc-box">
@@ -242,6 +243,7 @@ const Calculator = () => {
                             onClick={() => {
                                 buildNum('1');
                                 setDisplayState(runningNum);
+                                console.log(runningNum); 
                             }}
                         >
                             1
@@ -269,6 +271,7 @@ const Calculator = () => {
                             value={'+'}
                             onClick={() => {
                                 buildHistory(runningNum, '+');
+                                console.log(historyState);
                                 saveNums();
                                 setMathTypeState('+');
                                 setDisplayState('');

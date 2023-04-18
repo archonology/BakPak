@@ -3,6 +3,7 @@ import { Nav, Container, Row, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 // import calcPic from '../images/calcPic.png'
 // import dictionaryPic from '../images/dictionPic.png'
+import calcPic from '../images/calcPic.png'
 
 const Home = () => {
     return (
@@ -13,16 +14,19 @@ const Home = () => {
                     <Row>
                         <Col
                             xs={11} sm={10} md={7}
-                            className="tools"
+                            className="tools toolCalc"
                             as={Link}
-                            to={'/calculator'}>Calculator
+                            to={'/calculator'}><h2 className="toolTitle">Calculator <span className="japanTool"><br></br>電卓</span></h2>
+                            <br></br>
+                            {/* <p className="toolTitle">電卓</p> */}
                         </Col>
 
                         <Col
                             xs={11} sm={10} md={4}
-                            className="tools"
+                            className="tools toolDiction"
                             as={Link}
-                            to={'/dictionary'}>Dictionary
+                            to={'/dictionary'}><h2 className="toolTitle">Dictionary <span className="japanTool"><br></br>辞書</span></h2>
+                            <br></br>
                         </Col>
                     </Row>
                     {/* <Row>
