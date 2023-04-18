@@ -74,10 +74,9 @@ ul li {
   text-align: center;
 }
 
-.manga {
-  /* padding: 1em; */
-  /* background-color: var(--dark); */
-}
+/* .manga {
+border: 3px solid;
+} */
 
 .calc-box {
   display: flex;
@@ -112,6 +111,15 @@ ul li {
   border: 1px solid var(--dark);
 }
 
+.input-history {
+  text-align: right;
+  font-size: 12px;
+  float: right;
+  margin-top: 1.5em;
+  padding-right: 7px;
+  color: var(--mainBlueDark);
+}
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -130,6 +138,31 @@ ul li {
   color: var(--dark);
 }
 
+.toolCalc {
+  background-image: url('./images/calcPic.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.toolDiction {
+  background-image: url('./images/dictionPic2.png');
+  background-size: 160%;
+  background-position: 110%;
+  background-repeat: no-repeat;
+background-position-y: bottom;
+}
+
+.toolTitle {
+  float: right;
+  padding: 1em;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+
+.japanTool {
+  font-size: 27px;
+}
 /* .tools {
   min-width: 100px;
   max-width: 275px;
@@ -138,8 +171,8 @@ ul li {
   border-radius: 12px;
   margin: 8px;
   /* justify-content: center; */
-  /* transition: .5s; */
-/* } */ 
+/* transition: .5s; */
+/* } */
 
 .flex-container>div {
   background-color: var(--fourthGrayLight);
@@ -157,6 +190,7 @@ ul li {
 .flex-container>.math {
   background-color: var(--secBlueLight);
 }
+
 .flex-container>.clear {
   background-color: var(--secGreenLight);
 }
@@ -209,7 +243,7 @@ ul li {
   border: 1px var(--dark) solid;
   border-radius: 10px;
   text-align: center;
-    box-shadow: -6px 4px  var(--dark);
+  box-shadow: -6px 4px var(--dark);
 }
 
 .submit {
@@ -257,21 +291,21 @@ flex-wrap: wrap; */
   border-radius: 10px;
   text-align: center;
   -webkit-animation: fadein var(--fadeTime);
-    /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein var(--fadeTime);
-    /* Firefox < 16 */
-    -ms-animation: fadein var(--fadeTime);
-    /* Internet Explorer */
-    -o-animation: fadein var(--fadeTime);
-    /* Opera < 12.1 */
-    animation: fadein var(--fadeTime);
+  /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein var(--fadeTime);
+  /* Firefox < 16 */
+  -ms-animation: fadein var(--fadeTime);
+  /* Internet Explorer */
+  -o-animation: fadein var(--fadeTime);
+  /* Opera < 12.1 */
+  animation: fadein var(--fadeTime);
 }
 
 .bakpakPic:hover {
   box-shadow: 6px 7px 12px var(--shadowLight);
 }
 
-.diction-nav:hover{
+.diction-nav:hover {
   font-weight: 450;
 }
 
@@ -296,7 +330,13 @@ h5:hover {
 
 
 .tools:hover {
-  box-shadow: 2px 4px 5px var(--dark);
+  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
+  color: var(--dark);
+  
+}
+
+.toolTitle:hover{
+  font-weight: 900;
 }
 
 .flex-container>div:hover {
@@ -327,6 +367,14 @@ h5:hover {
 
 .submit:hover {
   background-color: var(--mainBlueLight);
+}
+
+@media screen and (max-width: 1020px){
+  .toolCalc {
+    background-size: 200%;
+    background-position: 90%;
+
+  }
 }
 
 @keyframes fadein {
