@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -82,92 +84,106 @@ const FindWord = () => {
 
     return (
         <>
-            <h5 className="viewSaved" onClick={handleShow}>
-                View Saved Words
-            </h5>
+            {/* <h2 className="title">Dictionary</h2> */}
 
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title >Saved Words</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <ul>
+            <Nav className="justify-content-center mb-5" activeKey="/home">
+                <Nav.Item>
+                    <Nav.Link as={Link} to={'/dictionary'}><strong className="diction-nav title">Dictionary</strong></Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link as={Link} to={'/home'}><em className="diction-nav">Back to Pak</em> </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Words</em></Nav.Link>
+                </Nav.Item>
+            </Nav>
 
-                        {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
 
-                            return (
-                                <>
-                                    <li
-                                        className="savedWrds"
-                                        key={crypto.randomUUID()}
-                                        onClick={() => {
-                                            setWordState(word);
-                                        }}>{word}</li>
-                                </>
-                            )
-                        }))
-                        }
-                    </ul>
+            <section className="dictionary-section">
 
-                </Offcanvas.Body>
-            </Offcanvas>
-            <div className="dictionary">
-                <div className="search-container">
+                <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title >Saved Words</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <ul>
 
-                    <form className="search-form">
-                        <h2 className="title">Dictionary</h2>
-                        <input
-                            id="search"
-                            name="search"
-                            type="text"
-                            placeholder="enter a word"
-                            value={wordState}
-                            onChange={(e) => setWordState(e.target.value)}
-                        ></input>
-                        <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
-                    </form>
-                </div>
-                <div className="savebtn" onClick={() => {
-                    if (wordState) {
-                        handleSavedWords(wordState);
-                        setErrorMessage(`The word ${wordState} was saved!`);
-                    } else {
-                        setErrorMessage('Nothing to save yet');
-                    }
+                            {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
 
-                }
-                }>save word</div>
-                <div className="dictionary-container">
+                                return (
+                                    <>
+                                        <li
+                                            className="savedWrds"
+                                            key={crypto.randomUUID()}
+                                            onClick={() => {
+                                                setWordState(word);
+                                            }}>{word}</li>
+                                    </>
+                                )
+                            }))
+                            }
+                        </ul>
+
+                    </Offcanvas.Body>
+                </Offcanvas>
+                <div className="dictionary">
+                    <div className="search-container">
+ 
+                        
+                        <form className="search-form">
+
+                            <input
+                                id="search"
+                                name="search"
+                                type="text"
+                                placeholder="enter a word"
+                                value={wordState}
+                                onChange={(e) => setWordState(e.target.value)}
+                            ></input>
+                            <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
+                        </form>
+                        
+                    </div>
                     {errorMessage && (
                         <div>
                             <p className="error-text">{errorMessage}</p>
                         </div>
                     )}
-                    {responseState.map((word) => {
 
-                        return (
-                            <>
+                    <div className="dictionary-container d-flex justify-content-center">
 
+                        {responseState?.map((word) => {
 
-                                <div key={crypto.randomUUID()} className="definitions">
+                            return (
+                                <>
+                                    <div className="def-box">
+                                        <div key={crypto.randomUUID()} className="definitions col-12">
 
-                                    <p >{word.phonetic}</p>
+                                            <p >{word.phonetic}</p>
 
-                                    <p >{word.meanings[0].definitions[0].definition}</p>
+                                            <p >{word.meanings[0].definitions[0].definition}</p>
+                                            <div className="savebtn" onClick={() => {
+                                                if (wordState) {
+                                                    handleSavedWords(wordState);
+                                                    setErrorMessage(`The word ${wordState} was saved!`);
+                                                } else {
+                                                    setErrorMessage('Nothing to save yet');
+                                                }
 
-                                    {word.meanings[0].definitions[1] === true ? (
-                                        <>
-                                            <p>{word.meanings[0].definitions[1].definition}</p>
-                                        </>
-                                    ) : (<></>)}
+                                            }
+                                            }>save word</div>
+                                        </div>
 
-                                </div>
+                                    </div>
+                                    <hr></hr>
+                                </>
 
-                            </>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+
+            </section>
             <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossOrigin="true"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossOrigin="true"></script>
