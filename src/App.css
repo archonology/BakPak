@@ -290,7 +290,12 @@ flex-wrap: wrap; */
   font-family: 'Yomogi', cursive;
 }
 
-
+.date {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Yomogi', cursive;
+  text-align: right;
+}
 .error-text {
   color: var(--dark);
   /* background-color: var(--secBlueLight); */

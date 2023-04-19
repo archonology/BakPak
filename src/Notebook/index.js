@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Nav, Modal, Form, Button } from "react-bootstrap";
+// import { useForm } from "react-hook-form";
+import { Nav, Modal, Button, FormControl } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Form from 'react-bootstrap/Form'
 
 import { useLocalForEntries } from "../utils/localStorage";
 
@@ -18,31 +19,51 @@ const Notes = () => {
     const handleModalShow = () => setShowModal(true);
 
     // state mgmt for the notebook entries.
-    const [entryDate, setEntryDateState] = useState('');
+    const [entryTitle, setTitleState] = useState('');
     const [entryText, setEntryTextState] = useState('');
-    const [savedEntries, setSavedEntriesState] = useLocalForEntries(['saved_entries', []]);
+    const [savedEntries, setSavedEntriesState] = useLocalForEntries('saved_entries', []);
+
+    var currentdate = new Date();
+    var datetime = (currentdate.getMonth() + 1) + "/"
+        + currentdate.getDate() + "/"
+        + currentdate.getFullYear()
+
+    // console.log(savedEntries);
 
     const handleInputChange = (e) => {
-        const { target } = e;
-        const inputType = target.type;
-        const inputValue = target.value;
+        let { target } = e;
+        let inputType = target.name;
+        let inputValue = target.value;
+        console.log(inputValue);
 
-        if (inputType == 'datetime-local') {
-            setEntryDateState(inputValue);
-        } else if (inputType = 'textarea') {
+        if (inputType === 'titleText') {
+            setTitleState(inputValue);
+        } else if (inputType === 'entryText') {
             setEntryTextState(inputValue);
         }
     };
 
     const handleFormSubmit = (e) => {
+        e.preventDefault();
 
+        console.log(datetime);
+        console.log(entryText);
+
+        let entry = {
+            date: datetime,
+            title: entryTitle,
+            entry: entryText
+        };
+
+        setSavedEntriesState([...savedEntries, entry]);
+        setEntryTextState('');
     }
-
+    console.log(savedEntries);
     // bindings for managing react-hook-form -- check out https://www.react-hook-form.com/api/useform/ to learn more.
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    // const onSubmit = data => console.log(data);
 
-    console.log(watch("example")); // watch input value by passing the name of it
+    // console.log(watch("example")); // watch input value by passing the name of it
 
     return (
         <>
@@ -64,8 +85,14 @@ const Notes = () => {
                     <Offcanvas.Title >Notebook Entries</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <p className="">4 April 2022 | 5:22pm</p>
-                    <p className="">2 April 2022 | 3:21pm</p>
+                    {savedEntries.map((entry) => {
+                        return (
+                            <>
+                                <Nav.Link key={crypto.randomUUID()} className="entries"> <em>{entry.title}</em> | {entry.date}</Nav.Link> <br />
+                            </>
+                        )
+
+                    })}
 
                 </Offcanvas.Body>
             </Offcanvas>
@@ -80,46 +107,57 @@ const Notes = () => {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form onSubmit={handleFormSubmit}>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control
-                                type="datetime-local"
-                                value={entryDate}
-                                onChange={handleInputChange}
-                                placeholder="present moment"
-                                autoFocus
-                            />
-                        </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                            controlId="notebookForm.DateAndTime"
-                        >
-                            <Form.Label>Entry</Form.Label>
-                            <Form.Control
-                                type="textarea"
-                                value={entryText}
-                                onChange={handleInputChange}
-                                rows={12} />
-                        </Form.Group>
-                    </Form>
+                    <form onSubmit={handleFormSubmit}>
+                        <label for="title">Title:</label><br />
+                        <input
+                            type="text"
+                            name='titleText'
+                            id="title"
+                            value={entryTitle}
+                            onChange={handleInputChange}
+                        />
+                        <label for="entry">Entry:</label><br />
+                        <textarea
+                            type="textarea"
+                            name='entryText'
+                            id="entry"
+                            rows={12}
+                            value={entryText}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="submit"
+                            id="submit"
+                            value='submit'
+                            onClick={handleModalClose}
+                        />
+
+                    </form>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleModalClose}>
-                        Save Entry
-                    </Button>
+
                 </Modal.Footer>
             </Modal>
 
-            <div className="note-box">
-                <p className="">4 April 2022 | 5:22pm</p>
-                <h4 className="notebook">Dear Diary, Don't forget to collect the software programs from the closet. Else the fish and cats will get into the programming.</h4>
+            {savedEntries.map((entry) => {
+                return (
+                    <>
+                        <div key={crypto.randomUUID()} className="note-box">
+                            <p className="date">{entry.date}</p>
+                            <h3 >{entry.title}</h3>
+                            <h4 className="notebook">{entry.entry}</h4>
 
-                {/* <div className="savebtn">save word</div> */}
-            </div>
+                            {/* <div className="savebtn">save word</div> */}
+                        </div>
+                    </>
+                )
+
+            })}
+
 
             {/* 
             <div className="note-box">

@@ -33,6 +33,8 @@ export const useLocalStr = (key, defaultValue) => {
 // same custom hook as above, but for saved notebook entries.
 export const useLocalForEntries = (key, defaultValue) => {
 
+    // console.log(key);
+    // console.log(defaultValue);
     const [value, setValue] = useState(() => {
         return getSavedEntries(key, defaultValue);
     });
