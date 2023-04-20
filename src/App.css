@@ -149,7 +149,14 @@ border: 3px solid;
   background-size: 160%;
   background-position: 110%;
   background-repeat: no-repeat;
-background-position-y: bottom;
+  background-position-y: bottom;
+}
+
+.toolNote {
+  background-image: url('./images/notebook.PNG');
+  background-size: 190%;
+  background-position: 80%;
+  background-repeat: no-repeat;
 }
 
 .toolTitle {
@@ -163,16 +170,6 @@ background-position-y: bottom;
 .japanTool {
   font-size: 27px;
 }
-/* .tools {
-  min-width: 100px;
-  max-width: 275px;
-  min-height: auto;
-  max-height: auto;
-  border-radius: 12px;
-  margin: 8px;
-  /* justify-content: center; */
-/* transition: .5s; */
-/* } */
 
 .flex-container>div {
   background-color: var(--fourthGrayLight);
@@ -244,14 +241,18 @@ background-position-y: bottom;
   border-radius: 10px;
   text-align: center;
   box-shadow: -6px 4px var(--dark);
+  color: var(--dark);
 }
 
 .submit {
+  width: 180px;
+  padding: 10px;
   border: 1px var(--dark) solid;
   border-radius: 10px;
   text-align: center;
   background-color: var(--lesslight);
   box-shadow: -3px 4px var(--dark);
+  color: black;
 }
 
 .definitions {
@@ -276,11 +277,72 @@ textarea {
   box-shadow: -3px 4px var(--dark);
 }
 
-.dictionary-container {
-  /* max-width: 600px;
-flex-wrap: wrap; */
+
+.note-box {
+  margin: 3em;
+  margin-top: 3em;
+  text-align: center;
+  /* padding: 3em; */
+  /* border: 1px solid var(--dark);
+  box-shadow: -6px 8px var(--dark); */
 }
 
+.noteTitle {
+  /* text-decoration: underline; */
+  font-style: oblique;
+  font-size: 25px;
+  margin-bottom: 0;
+}
+
+.date {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Yomogi', cursive;
+  /* text-align: left; */
+  margin-bottom: 1em;
+}
+
+.notebook {
+  font-family: 'Yomogi', cursive;
+  font-size: 25px;
+  line-height: 27px;
+  white-space: pre-wrap;
+}
+
+.entryForm {
+  margin: 2em;
+}
+
+.titleEntry {
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em;
+  height: 3em;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.textEntry {
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  font-family: 'Yomogi', cursive;
+  font-size: 25px;
+}
+
+.entrySubmit {
+  border-radius: 8px;
+  background-color: var(--firstPinkLight);
+  box-shadow: -3px 3px var(--dark);
+}
+
+.trashEntry {
+  margin-left: 8px;
+  padding: 5px;
+  border-radius: 20%;
+}
 
 .error-text {
   color: var(--dark);
@@ -313,6 +375,9 @@ flex-wrap: wrap; */
   outline: none;
 }
 
+.notebook:hover {
+  color: var(--dark);
+}
 
 .footer:hover {
   font-weight: 450;
@@ -332,10 +397,10 @@ h5:hover {
 .tools:hover {
   box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
   color: var(--dark);
-  
+
 }
 
-.toolTitle:hover{
+.toolTitle:hover {
   font-weight: 900;
 }
 
@@ -369,7 +434,26 @@ h5:hover {
   background-color: var(--mainBlueLight);
 }
 
-@media screen and (max-width: 1020px){
+input:focus {
+  outline: none;
+  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
+  ;
+}
+
+.trashEntry:hover {
+  box-shadow: 2px 5px 3px rgba(28, 24, 24, 0.648);
+}
+
+.entrySubmit:hover {
+  background-color: var(--secPinkLight);
+}
+
+@media screen and (max-width: 1020px) {
   .toolCalc {
     background-size: 200%;
     background-position: 90%;

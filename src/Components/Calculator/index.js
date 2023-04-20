@@ -4,7 +4,8 @@ import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-// a few globals
+// A few contextual bindings to build the current number, saved numbers for the equation, and the solution -- this is a temporary brute force solution and experiement in react state -- plus I was focused on figuring out how to build a calculator from scratch without spending too much time on state in the process. 
+// I will rewrite these bindings later as state variables by refactoring this calculator to function as a JS form, which will decrease renders and increase speed.
 let runningNum = '';
 let numArray = [];
 let solution = '';
@@ -16,6 +17,7 @@ const Calculator = () => {
     const [displayState, setDisplayState] = useState('');
     const [mathTypeState, setMathTypeState] = useState('');
     const [historyState, setHistoryState] = useState('');
+    // const [runningNum, setRunningNumState] = useState('');
 
     // build the user's number by adding characters to strings
     function buildNum(value) {
@@ -33,7 +35,7 @@ const Calculator = () => {
         console.log(numArray);
         runningNum = '';
     }
-
+    // doing all the maths!
     function add() {
         solution = numArray.reduce((a, b) => Number(a) + Number(b));
         numArray = [];
@@ -67,6 +69,7 @@ const Calculator = () => {
     }
 
     // the trickiest bit to build for sure! here is a resource: https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
+    // currently, this feature is only partially function as it needs to. It will be fully functional when I refactor. 
     function percent() {
         // if (mathTypeState) {
         //     let multiply = numArray.reduce((a, b) => Number(a) * Number(b));
@@ -243,7 +246,7 @@ const Calculator = () => {
                             onClick={() => {
                                 buildNum('1');
                                 setDisplayState(runningNum);
-                                console.log(runningNum); 
+                                console.log(runningNum);
                             }}
                         >
                             1

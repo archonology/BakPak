@@ -116,7 +116,7 @@ const FindWord = () => {
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Words</em></Nav.Link>
+                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Entries</em></Nav.Link>
                 </Nav.Item>
             </Nav>
 
@@ -213,13 +213,6 @@ const FindWord = () => {
 
                 </div>
             </section>
-            <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossOrigin="true"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossOrigin="true"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossOrigin="true"></script>
-
-            <script>var Alert = ReactBootstrap.Alert;</script>
         </>
     )
 }
