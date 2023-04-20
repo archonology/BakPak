@@ -29,7 +29,7 @@ const Home = () => {
                             <br></br>
                         </Col>
                         <Col
-                            xs={11} sm={10} md={11}
+                            xs={11} sm={10} md={3}
                             className="tools toolNote"
                             as={Link}
                             to={'/notebook'}
@@ -37,6 +37,15 @@ const Home = () => {
                             <h2 className="toolTitle">Notebook <span className="japanTool"><br></br>
                                 ノート</span></h2>
                             <br></br>
+                        </Col>
+                        <Col
+                            xs={11} sm={10} md={8}
+                            className="tools toolRecord"
+                            as={Link}
+                            to={'/calculator'}><h2 className="toolTitle">Recorder<span className="japanTool"><br></br>
+                            ボイスレコーダー</span></h2>
+                            <br></br>
+                            {/* <p className="toolTitle">電卓</p> */}
                         </Col>
                     </Row>
                     {/* <Row>

@@ -94,7 +94,7 @@ const Notes = () => {
                     {savedEntries.map((entry) => {
                         return (
                             <>
-                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date} 
                                     <span className="trashEntry"
                                         onClick={() => {
 
@@ -107,7 +107,7 @@ const Notes = () => {
 
                                         }}
                                     >
-                                        <BsFillTrash3Fill />
+                                         <BsFillTrash3Fill />
                                     </span>
                                 </Nav.Link>
                                 <br />

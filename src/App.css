@@ -152,7 +152,12 @@ border: 3px solid;
   background-position-y: bottom;
 }
 
-.toolNote {}
+.toolNote {
+  background-image: url('./images/notebook.PNG');
+  background-size: 190%;
+  background-position: 80%;
+  background-repeat: no-repeat;
+}
 
 .toolTitle {
   float: right;
@@ -333,6 +338,12 @@ textarea {
   box-shadow: -3px 3px var(--dark);
 }
 
+.trashEntry {
+  margin-left: 8px;
+  padding: 5px;
+  border-radius: 20%;
+}
+
 .error-text {
   color: var(--dark);
   /* background-color: var(--secBlueLight); */
@@ -432,6 +443,10 @@ textarea:focus {
   outline: none;
   box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
   ;
+}
+
+.trashEntry:hover {
+  box-shadow: 2px 5px 3px rgba(28, 24, 24, 0.648);
 }
 
 .entrySubmit:hover {
