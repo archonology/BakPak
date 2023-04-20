@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 // import { useForm } from "react-hook-form";
-import { Nav, Modal, Button, FormControl } from "react-bootstrap";
+import { Nav, Modal, Button, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form'
@@ -20,13 +20,16 @@ const Notes = () => {
 
     // state mgmt for the notebook entries.
     const [entryTitle, setTitleState] = useState('');
-    const [entryText, setEntryTextState] = useState('');
+    const [entryText, setEntryTextState] = useState(``);
     const [savedEntries, setSavedEntriesState] = useLocalForEntries('saved_entries', []);
 
     var currentdate = new Date();
     var datetime = (currentdate.getMonth() + 1) + "/"
         + currentdate.getDate() + "/"
-        + currentdate.getFullYear()
+        + currentdate.getFullYear() + ' @ '
+        + currentdate.getHours() + ':'
+        + currentdate.getMinutes() + ':'
+        + currentdate.getSeconds();
 
     // console.log(savedEntries);
 
@@ -55,7 +58,7 @@ const Notes = () => {
             entry: entryText
         };
 
-        setSavedEntriesState([...savedEntries, entry]);
+        setSavedEntriesState([entry, ...savedEntries]);
         setEntryTextState('');
     }
     console.log(savedEntries);
@@ -88,7 +91,7 @@ const Notes = () => {
                     {savedEntries.map((entry) => {
                         return (
                             <>
-                                <Nav.Link key={crypto.randomUUID()} className="entries"> <em>{entry.title}</em> | {entry.date}</Nav.Link> <br />
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}</Nav.Link> <br />
                             </>
                         )
 
@@ -97,9 +100,9 @@ const Notes = () => {
                 </Offcanvas.Body>
             </Offcanvas>
 
-
-            <input onClick={handleModalShow} value={'create new entry'} className="submit newPost"></input>
-
+            <div className="d-flex justify-content-center">
+                <div onClick={handleModalShow} className="submit newPost ">create a new entry</div>
+            </div>
             {/* Bootstrap modal */}
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
@@ -107,31 +110,39 @@ const Notes = () => {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <form onSubmit={handleFormSubmit}>
-                        <label for="title">Title:</label><br />
-                        <input
-                            type="text"
-                            name='titleText'
-                            id="title"
-                            value={entryTitle}
-                            onChange={handleInputChange}
-                        />
-                        <label for="entry">Entry:</label><br />
-                        <textarea
-                            type="textarea"
-                            name='entryText'
-                            id="entry"
-                            rows={12}
-                            value={entryText}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="submit"
-                            id="submit"
-                            value='submit'
-                            onClick={handleModalClose}
-                        />
-
+                    <form
+                        onSubmit={handleFormSubmit}
+                        className="entryForm d-flex justify-content-center"
+                    >
+                        <Row>
+                            {/* <label for="title">Title:</label><br /> */}
+                            <input
+                                type="text"
+                                name='titleText'
+                                id="title"
+                                value={entryTitle}
+                                onChange={handleInputChange}
+                                placeholder="title"
+                                className="titleEntry"
+                            />
+                            {/* <label for="entry">Entry:</label><br /> */}
+                            <textarea
+                                type="textarea"
+                                name='entryText'
+                                id="entry"
+                                rows={12}
+                                value={entryText}
+                                onChange={handleInputChange}
+                                placeholder="entry"
+                                className="textEntry"
+                            />
+                            <input
+                                type="submit"
+                                id="submit"
+                                value='submit'
+                                onClick={handleModalClose}
+                            />
+                        </Row>
                     </form>
 
                 </Modal.Body>
@@ -146,12 +157,15 @@ const Notes = () => {
             {savedEntries.map((entry) => {
                 return (
                     <>
-                        <div key={crypto.randomUUID()} className="note-box">
+                        <div key={entry.date} className="note-box" >
+                            <hr />
+                            <h3 className="noteTitle" >{entry.title}<span></span></h3>
                             <p className="date">{entry.date}</p>
-                            <h3 >{entry.title}</h3>
-                            <h4 className="notebook">{entry.entry}</h4>
+                            <p className="notebook">{entry.entry}</p>
+
 
                             {/* <div className="savebtn">save word</div> */}
+                            {/* className="note-box" */}
                         </div>
                     </>
                 )

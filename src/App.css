@@ -240,6 +240,8 @@ border: 3px solid;
 }
 
 .submit {
+  width: 180px;
+  padding: 10px;
   border: 1px var(--dark) solid;
   border-radius: 10px;
   text-align: center;
@@ -276,26 +278,66 @@ flex-wrap: wrap; */
 }
 
 .newPost {
-  margin-left: 3em;
+  /* margin-left: 3em; */
+
 }
 
 .note-box {
-  margin: 5em;
-  padding: 3em;
-  border: 1px solid var(--dark);
-  box-shadow: -6px 8px var(--dark);
+  margin: 3em;
+  margin-top: 3em;
+  text-align: center;
+  /* padding: 3em; */
+  /* border: 1px solid var(--dark);
+  box-shadow: -6px 8px var(--dark); */
 }
 
-.notebook {
-  font-family: 'Yomogi', cursive;
+.noteTitle {
+  /* text-decoration: underline; */
+  font-style: oblique;
+  font-size: 25px;
+  margin-bottom: 0;
 }
 
 .date {
   font-size: 16px;
   font-weight: 700;
   font-family: 'Yomogi', cursive;
-  text-align: right;
+  /* text-align: left; */
+  margin-bottom: 1em;
 }
+
+.notebook {
+  font-family: 'Yomogi', cursive;
+  font-size: 25px;
+  line-height: 25px;
+  white-space: pre-wrap;
+}
+
+
+
+.entryForm {
+  margin: 2em;
+}
+
+.titleEntry {
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em;
+  height: 3em;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.textEntry {
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  font-family: 'Yomogi', cursive;
+  font-size: 25px;
+}
+
 .error-text {
   color: var(--dark);
   /* background-color: var(--secBlueLight); */
