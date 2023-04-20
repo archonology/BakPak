@@ -26,12 +26,12 @@ const Notes = () => {
     const [entryText, setEntryTextState] = useState(``);
     const [savedEntries, setSavedEntriesState] = useLocalForEntries('saved_entries', []);
 
-    var currentdate = new Date();
-    var datetime = (currentdate.getMonth() + 1) + "/"
+    let currentdate = new Date();
+    let datetime = (currentdate.getMonth() + 1) + "/"
         + currentdate.getDate() + "/"
         + currentdate.getFullYear() + ' @ '
         + currentdate.getHours() + ':'
-        + currentdate.getMinutes() + ':'
+        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
         + currentdate.getSeconds();
 
     // console.log(savedEntries);
@@ -62,7 +62,8 @@ const Notes = () => {
         };
 
         setSavedEntriesState([entry, ...savedEntries]);
-        setEntryTextState('');
+        setTitleState('');
+        setEntryTextState(``);
     }
     console.log(savedEntries);
     // bindings for managing react-hook-form -- check out https://www.react-hook-form.com/api/useform/ to learn more.
@@ -94,7 +95,7 @@ const Notes = () => {
                     {savedEntries.map((entry) => {
                         return (
                             <>
-                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date} 
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
                                     <span className="trashEntry"
                                         onClick={() => {
 
@@ -107,7 +108,7 @@ const Notes = () => {
 
                                         }}
                                     >
-                                         <BsFillTrash3Fill />
+                                        <BsFillTrash3Fill />
                                     </span>
                                 </Nav.Link>
                                 <br />
@@ -156,13 +157,13 @@ const Notes = () => {
                                 placeholder="entry"
                                 className="textEntry"
                             />
-                            <input
+                            <button
                                 type="submit"
                                 id="submit"
                                 value='submit'
                                 className="entrySubmit"
                                 onClick={handleModalClose}
-                            />
+                            >submit</button>
                         </Row>
                     </form>
 

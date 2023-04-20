@@ -42,7 +42,7 @@ const Home = () => {
                             xs={11} sm={10} md={8}
                             className="tools toolRecord"
                             as={Link}
-                            to={'/calculator'}><h2 className="toolTitle">Recorder<span className="japanTool"><br></br>
+                            to={'/recorder'}><h2 className="toolTitle">Recorder<span className="japanTool"><br></br>
                             ボイスレコーダー</span></h2>
                             <br></br>
                             {/* <p className="toolTitle">電卓</p> */}

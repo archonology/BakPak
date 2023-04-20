@@ -47,7 +47,7 @@ ul li {
 }
 
 .header {
-  /* margin-top: 1em; */
+  margin-top: .4em;
   margin-bottom: .5em;
   font-size: 50px;
   font-weight: bold;
@@ -305,7 +305,7 @@ textarea {
 .notebook {
   font-family: 'Yomogi', cursive;
   font-size: 25px;
-  line-height: 27px;
+  line-height: 30px;
   white-space: pre-wrap;
 }
 
@@ -333,6 +333,7 @@ textarea {
 }
 
 .entrySubmit {
+  padding: 10px;
   border-radius: 8px;
   background-color: var(--firstPinkLight);
   box-shadow: -3px 3px var(--dark);

@@ -1,12 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { useState } from "react";
+import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { getWordsDb, putWordsDb } from "../../utils/database";
-import { getSavedWords, useLocalStr } from "../../utils/localStorage";
+import { putWordsDb } from "../../utils/database";
+import { useLocalStr } from "../../utils/localStorage";
 
 
 const FindWord = () => {
