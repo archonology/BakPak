@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/BakPak/static/css/main.7599fe52.css",
-    "main.js": "/BakPak/static/js/main.175ea5a5.js",
+    "main.css": "/BakPak/static/css/main.76615ae9.css",
+    "main.js": "/BakPak/static/js/main.0bf84e51.js",
     "static/js/787.28cb0dcd.chunk.js": "/BakPak/static/js/787.28cb0dcd.chunk.js",
+    "static/media/notebook.PNG": "/BakPak/static/media/notebook.bb15d9b35198c6420edd.PNG",
     "static/media/calcPic.png": "/BakPak/static/media/calcPic.d35258648d46fd5e0849.png",
     "service-worker.js": "/BakPak/service-worker.js",
     "static/media/dictionPic2.png": "/BakPak/static/media/dictionPic2.3dd4dcb96b05b646357d.png",
     "index.html": "/BakPak/index.html",
-    "main.7599fe52.css.map": "/BakPak/static/css/main.7599fe52.css.map",
-    "main.175ea5a5.js.map": "/BakPak/static/js/main.175ea5a5.js.map",
+    "main.76615ae9.css.map": "/BakPak/static/css/main.76615ae9.css.map",
+    "main.0bf84e51.js.map": "/BakPak/static/js/main.0bf84e51.js.map",
     "787.28cb0dcd.chunk.js.map": "/BakPak/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7599fe52.css",
-    "static/js/main.175ea5a5.js"
+    "static/css/main.76615ae9.css",
+    "static/js/main.0bf84e51.js"
   ]
 }
