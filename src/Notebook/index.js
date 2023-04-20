@@ -5,10 +5,13 @@ import { Nav, Modal, Button, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form'
+import { BsFillTrash3Fill } from 'react-icons/bs'
 
-import { useLocalForEntries } from "../utils/localStorage";
+import { removeEntry, useLocalForEntries } from "../utils/localStorage";
 
 const Notes = () => {
+
+    // removeEntry('4/19/2023 @143556');
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -91,7 +94,23 @@ const Notes = () => {
                     {savedEntries.map((entry) => {
                         return (
                             <>
-                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}</Nav.Link> <br />
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
+                                    <span className="trashEntry"
+                                        onClick={() => {
+
+                                            const updatedEntries =
+                                                savedEntries.filter((savedEntry) => savedEntry.date !== entry.date);
+
+                                            setSavedEntriesState(updatedEntries);
+
+                                            removeEntry(entry.date);
+
+                                        }}
+                                    >
+                                        <BsFillTrash3Fill />
+                                    </span>
+                                </Nav.Link>
+                                <br />
                             </>
                         )
 
@@ -124,6 +143,7 @@ const Notes = () => {
                                 onChange={handleInputChange}
                                 placeholder="title"
                                 className="titleEntry"
+                                autoFocus
                             />
                             {/* <label for="entry">Entry:</label><br /> */}
                             <textarea
@@ -140,6 +160,7 @@ const Notes = () => {
                                 type="submit"
                                 id="submit"
                                 value='submit'
+                                className="entrySubmit"
                                 onClick={handleModalClose}
                             />
                         </Row>

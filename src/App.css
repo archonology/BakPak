@@ -272,15 +272,6 @@ textarea {
   box-shadow: -3px 4px var(--dark);
 }
 
-.dictionary-container {
-  /* max-width: 600px;
-flex-wrap: wrap; */
-}
-
-.newPost {
-  /* margin-left: 3em; */
-
-}
 
 .note-box {
   margin: 3em;
@@ -309,11 +300,9 @@ flex-wrap: wrap; */
 .notebook {
   font-family: 'Yomogi', cursive;
   font-size: 25px;
-  line-height: 25px;
+  line-height: 27px;
   white-space: pre-wrap;
 }
-
-
 
 .entryForm {
   margin: 2em;
@@ -336,6 +325,12 @@ flex-wrap: wrap; */
   border-radius: 8px;
   font-family: 'Yomogi', cursive;
   font-size: 25px;
+}
+
+.entrySubmit {
+  border-radius: 8px;
+  background-color: var(--firstPinkLight);
+  box-shadow: -3px 3px var(--dark);
 }
 
 .error-text {
@@ -426,6 +421,21 @@ h5:hover {
 
 .submit:hover {
   background-color: var(--mainBlueLight);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.297);
+  ;
+}
+
+.entrySubmit:hover {
+  background-color: var(--secPinkLight);
 }
 
 @media screen and (max-width: 1020px) {

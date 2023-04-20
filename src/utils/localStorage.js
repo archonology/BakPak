@@ -46,3 +46,18 @@ export const useLocalForEntries = (key, defaultValue) => {
     return [value, setValue];
 
 };
+
+export const removeEntry = (date) => {
+    const savedEntries = localStorage.getItem('saved_entries')
+        ? JSON.parse(localStorage.getItem('saved_entries'))
+        : null;
+
+    if (!savedEntries) {
+        return false;
+    }
+
+    const updatedEntries = savedEntries?.filter((savedEntry) => savedEntry.date !== date);
+    localStorage.setItem('saved_entries', JSON.stringify(updatedEntries));
+
+    return true;
+};
