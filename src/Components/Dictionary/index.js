@@ -110,6 +110,7 @@ const FindWord = () => {
             const jsonData = await response.json();
             setErrorMessage('');
             setResponseState(jsonData);
+            console.log(jsonData);
 
         } catch (err) {
             console.error(err);
@@ -118,7 +119,6 @@ const FindWord = () => {
 
     return (
         <>
-            {/* <h2 className="title">Dictionary</h2> */}
 
             <Nav className="justify-content-center mb-5" activeKey="/home">
                 <Nav.Item>
@@ -142,7 +142,7 @@ const FindWord = () => {
                     <Offcanvas.Body>
 
 
-                        {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((savedWord) => {
+                        {savedWords.length === 0 ? (<p>No saved words yet</p>) : (savedWords.map((savedWord) => {
 
                             return (
                                 <>
@@ -156,8 +156,8 @@ const FindWord = () => {
                                         }}>{savedWord.word}</p>
                                 </>
                             )
-                        }))
-                        }
+                        })
+                        )}
 
 
                     </Offcanvas.Body>
@@ -183,14 +183,13 @@ const FindWord = () => {
 
                     <div className="dictionary-container">
 
-                        {responseState?.map((word) => {
-
+                        {responseState?.map((word, index) => {
                             return (
                                 <>
                                     <div className="def-box">
-                                        <div key={crypto.randomUUID()} className="definitions">
+                                        <div key={index++} className="definitions">
 
-                                            {/* <p >{word.phonetic}</p> */}
+                                            <p >{word.phonetic}</p>
 
                                             <p >{word.meanings[0].definitions[0].definition}</p>
                                             {word.meanings[0].definitions[1] ? (

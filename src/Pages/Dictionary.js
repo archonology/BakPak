@@ -1,5 +1,4 @@
 import React from "react";
-
 import FindWord from "../Components/Dictionary";
 
 const Dictionary = () => {
