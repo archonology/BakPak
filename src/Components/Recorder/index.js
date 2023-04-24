@@ -3,6 +3,11 @@ import { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Container, Row, Col } from "react-bootstrap";
+// https://www.npmjs.com/package/react-media-recorder a react recorder pkg to handle the recording
+import { ReactMediaRecorder } from "react-media-recorder";
+
+
 
 const TheRecorder = () => {
 
@@ -19,6 +24,7 @@ const TheRecorder = () => {
         + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
         + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
+
     return (
         <>
             <Nav className="justify-content-center mb-5" activeKey="/home">
@@ -29,7 +35,7 @@ const TheRecorder = () => {
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Recordings</em></Nav.Link>
+                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Recordings</em></Nav.Link>
                 </Nav.Item>
             </Nav>
             <Offcanvas show={show} onHide={handleClose}>
@@ -59,6 +65,25 @@ const TheRecorder = () => {
 
                 </Offcanvas.Body>
             </Offcanvas>
+
+            <Container className="d-flex justify-content-center">
+                <ReactMediaRecorder
+                    audio
+                    render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+                        <Row>
+                            <Col>
+                                <p>{status}</p>
+                                <button onClick={startRecording}>Start Recording</button>
+                                <button onClick={stopRecording}>Stop Recording</button>
+                                <audio src={mediaBlobUrl} controls autoPlay />
+                            </Col>
+
+                        </Row>
+                    )}
+                />
+            </Container>
+
+
         </>
     )
 }

@@ -32,7 +32,7 @@ const Notes = () => {
         + currentdate.getFullYear() + ' @ '
         + currentdate.getHours() + ':'
         + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
-        + currentdate.getSeconds();
+        + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
     // console.log(savedEntries);
 

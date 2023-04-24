@@ -159,6 +159,17 @@ border: 3px solid;
   background-repeat: no-repeat;
 }
 
+.toolRecord {
+  background-image: url('./images/tape.PNG');
+  /* background-size: 130%;
+  background-position: 140%; */
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: 5%;
+  background-position-y: top;
+  /* background-position-x: left; */
+}
+
 .toolTitle {
   float: right;
   padding: 1em;
@@ -215,6 +226,12 @@ border: 3px solid;
 
 .savedWrds {
   font-weight: bold;
+  padding: 1em;
+  background-color: var(--firstPinkLight);
+  text-align: center;
+  width: auto;
+  border-radius: 8px;
+    box-shadow: -3px 3px var(--dark);
 }
 
 
@@ -428,7 +445,7 @@ h5:hover {
 
 .savedWrds:hover {
   cursor: pointer;
-  color: var(--fifthGrayLight);
+  background-color: var(--secPinkLight);
 }
 
 .submit:hover {
@@ -458,7 +475,33 @@ textarea:focus {
   .toolCalc {
     background-size: 200%;
     background-position: 90%;
+    background-position-y: top;
 
+  }
+
+  .toolRecord {
+    background-size: 110%;
+    background-position-y: top;
+    background-position-x: left;
+  }
+}
+
+@media screen and (max-width: 430px) {
+
+  .toolNote {
+    background-size: 200%;
+    background-position: 70%;
+    background-position-y: bottom;
+  }
+
+  .toolRecord {
+    background-size: 140%;
+    background-position-y: top;
+    background-position-x: left;
+  }
+
+  .submit {
+    margin-top: 1em;
   }
 }
 

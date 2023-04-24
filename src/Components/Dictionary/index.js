@@ -54,7 +54,7 @@ const FindWord = () => {
                 return setErrorMessage(`The word ${word} has already been saved.`);
             }
         }
-        setSavedWords([...savedWords, word]);
+        setSavedWords([word, ...savedWords]);
         putWordsDb(word);
         setErrorMessage(`${wordState} has been saved.`);
     }
@@ -126,25 +126,25 @@ const FindWord = () => {
                         <Offcanvas.Title >Saved Words</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <ul>
 
-                            {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
 
-                                return (
-                                    <>
-                                        <li
-                                            className="savedWrds"
-                                            key={word}
-                                            onClick={() => {
-                                                setWordState(word);
-                                                handleFetchSaved(word);
-                                                setShow(false);
-                                            }}>{word}</li>
-                                    </>
-                                )
-                            }))
-                            }
-                        </ul>
+                        {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
+
+                            return (
+                                <>
+                                    <p
+                                        className="savedWrds"
+                                        key={word}
+                                        onClick={() => {
+                                            setWordState(word);
+                                            handleFetchSaved(word);
+                                            setShow(false);
+                                        }}>{word}</p>
+                                </>
+                            )
+                        }))
+                        }
+
 
                     </Offcanvas.Body>
                 </Offcanvas>
