@@ -23,6 +23,14 @@ const FindWord = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    let currentdate = new Date();
+    let datetime = (currentdate.getMonth() + 1) + "/"
+        + currentdate.getDate() + "/"
+        + currentdate.getFullYear() + ' @ '
+        + currentdate.getHours() + ':'
+        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
+        + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
+
     // set up useEffect hook to save the words list to localStorage on component unmount
     // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
     // useEffect(() => {
@@ -48,14 +56,20 @@ const FindWord = () => {
 
         for (let i = 0; i < savedWords.length; i++) {
 
-            if (savedWords[i] === word) {
+            if (savedWords[i].word === word) {
                 console.log('word match found');
 
                 return setErrorMessage(`The word ${word} has already been saved.`);
             }
         }
-        setSavedWords([word, ...savedWords]);
-        putWordsDb(word);
+
+        let newWord = {
+            word_id: datetime,
+            word: word
+        };
+
+        setSavedWords([newWord, ...savedWords]);
+        putWordsDb(savedWords);
         setErrorMessage(`${wordState} has been saved.`);
     }
 
@@ -128,18 +142,18 @@ const FindWord = () => {
                     <Offcanvas.Body>
 
 
-                        {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
+                        {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((savedWord) => {
 
                             return (
                                 <>
                                     <p
+                                        key={savedWord.word_id}
                                         className="savedWrds"
-                                        key={word}
                                         onClick={() => {
-                                            setWordState(word);
-                                            handleFetchSaved(word);
+                                            setWordState(savedWord.word);
+                                            handleFetchSaved(savedWord.word);
                                             setShow(false);
-                                        }}>{word}</p>
+                                        }}>{savedWord.word}</p>
                                 </>
                             )
                         }))

@@ -16,6 +16,7 @@ const TheRecorder = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // handle date stamping for reference, ID, and storage
     let currentdate = new Date();
     let datetime = (currentdate.getMonth() + 1) + "/"
         + currentdate.getDate() + "/"
