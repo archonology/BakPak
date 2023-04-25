@@ -362,6 +362,30 @@ textarea {
   border-radius: 20%;
 }
 
+.startRecording {
+  width: 180px;
+  padding: 10px;
+  margin: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--lesslight);
+  box-shadow: -3px 4px var(--dark);
+  color: black;
+}
+
+.stopRecording {
+  width: 180px;
+  padding: 10px;
+  margin: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--firstPinkLight);
+  box-shadow: -3px 4px var(--dark);
+  color: black;
+}
+
 .error-text {
   color: var(--dark);
   /* background-color: var(--secBlueLight); */
@@ -468,6 +492,14 @@ textarea:focus {
 }
 
 .entrySubmit:hover {
+  background-color: var(--secPinkLight);
+}
+
+.startRecording:hover {
+    background-color: var(--mainBlueLight);
+}
+
+.stopRecording:hover {
   background-color: var(--secPinkLight);
 }
 

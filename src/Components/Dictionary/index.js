@@ -192,6 +192,7 @@ const FindWord = () => {
                                             <p >{word.phonetic}</p>
 
                                             <p >{word.meanings[0].definitions[0].definition}</p>
+                                            
                                             {word.meanings[0].definitions[1] ? (
                                                 <>
                                                     <hr></hr>

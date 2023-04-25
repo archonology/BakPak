@@ -74,9 +74,10 @@ const TheRecorder = () => {
                         <Row>
                             <Col>
                                 <p>{status}</p>
-                                <button onClick={startRecording}>Start Recording</button>
-                                <button onClick={stopRecording}>Stop Recording</button>
-                                <audio src={mediaBlobUrl} controls autoPlay />
+                                <div onClick={startRecording} className="startRecording">Start Recording</div>
+                                <div onClick={stopRecording} className="stopRecording">Stop Recording</div>
+                                {!mediaBlobUrl ? (<audio src={mediaBlobUrl} controls hidden />) : (<audio src={mediaBlobUrl} controls />)}
+
                             </Col>
 
                         </Row>
