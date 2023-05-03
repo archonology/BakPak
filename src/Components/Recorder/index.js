@@ -13,6 +13,7 @@ const TheRecorder = () => {
 
     const [show, setShow] = useState(false);
 
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -25,6 +26,11 @@ const TheRecorder = () => {
         + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
         + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
+    // let setTime = setInterval(() => { setClockState(datetime) }, 2000);
+    
+    // const [clock, setClockState] = useState(setTime);
+
+    // console.log(clock);
 
     return (
         <>
@@ -73,11 +79,12 @@ const TheRecorder = () => {
                     render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
                         <Row>
                             <Col>
-                                <p>{status}</p>
+
                                 <div onClick={startRecording} className="startRecording">Start Recording</div>
                                 <div onClick={stopRecording} className="stopRecording">Stop Recording</div>
-                                {!mediaBlobUrl ? (<audio src={mediaBlobUrl} controls hidden />) : (<audio src={mediaBlobUrl} controls />)}
 
+                                {status === 'recording' ? (<p className="status">{status} | {datetime}</p>) : (<></>)}
+                                {!mediaBlobUrl ? (<audio src={mediaBlobUrl} controls hidden />) : (<audio src={mediaBlobUrl} controls />)}
                             </Col>
 
                         </Row>
