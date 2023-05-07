@@ -392,7 +392,7 @@ textarea {
   margin: 1em;
   border: 1px var(--dark) solid;
   border-radius: 10px;
-  text-align: center;
+  text-align: left;
   background-color: var(--firstGreenLight);
   box-shadow: -3px 4px var(--dark);
   color: black;

@@ -1,36 +1,46 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Container, Row, Col } from "react-bootstrap";
 // https://www.npmjs.com/package/react-media-recorder a react recorder pkg to handle the recording
 import { ReactMediaRecorder } from "react-media-recorder";
-
-
+import { datetime } from "../../utils/currentTime";
 
 const TheRecorder = () => {
-
+    const [recordStatus, setRecordStatus] = useState(false);
+    const [animate, setAnimate] = useState("Recording");
     const [show, setShow] = useState(false);
-
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // handle date stamping for reference, ID, and storage
-    let currentdate = new Date();
-    let datetime = (currentdate.getMonth() + 1) + "/"
-        + currentdate.getDate() + "/"
-        + currentdate.getFullYear() + ' @ '
-        + currentdate.getHours() + ':'
-        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
-        + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
+    // with this useEffect we manage setting and clearing the time interval to animate the recording status.
+    useEffect(() => {
+        let animateRecording = "Recording";
 
-    // let setTime = setInterval(() => { setClockState(datetime) }, 2000);
-    
-    // const [clock, setClockState] = useState(setTime);
+        function timer() {
+            animateRecording += ".";
+            setAnimate(animateRecording);
+            console.log(animateRecording);
+            if (animateRecording.length >= 13) {
+                animateRecording = "Recording";
+                setAnimate(animateRecording);
+            }
 
-    // console.log(clock);
+        };
+        const interval = setInterval(() => {
+            if (recordStatus === false) {
+                return;
+            }
+            if (recordStatus === true) {
+                timer();
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [recordStatus]);
+
+
 
     return (
         <>
@@ -52,22 +62,6 @@ const TheRecorder = () => {
                 <Offcanvas.Body>
                     <ul>
 
-                        {/* {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
-
-                            return (
-                                <>
-                                    <li
-                                        className="savedWrds"
-                                        key={word}
-                                        onClick={() => {
-                                            setWordState(word);
-                                            handleFetchSaved(word);
-                                            setShow(false);
-                                        }}>{word}</li>
-                                </>
-                            )
-                        }))
-                        } */}
                     </ul>
 
                 </Offcanvas.Body>
@@ -80,11 +74,23 @@ const TheRecorder = () => {
                         <Row>
                             <Col>
 
-                                <div onClick={startRecording} className="startRecording">Start Recording</div>
-                                <div onClick={stopRecording} className="stopRecording">Stop Recording</div>
+                                <div onClick={() => {
+                                    startRecording();
+                                    setRecordStatus(true);
+                                }}
+                                    className="startRecording">Start Recording</div>
+                                <div onClick={() => {
+                                    stopRecording();
+                                    setRecordStatus(false);
+                                }}
+                                    className="stopRecording">Stop Recording</div>
 
-                                {status === 'recording' ? (<p className="status">{status} | {datetime}</p>) : (<></>)}
-                                {!mediaBlobUrl ? (<audio src={mediaBlobUrl} controls hidden />) : (<audio src={mediaBlobUrl} controls />)}
+                                {status === 'recording' ? (<p className="status">{datetime} | {animate}</p>) : (<></>)}
+                                {!mediaBlobUrl ? (
+                                    <audio src={mediaBlobUrl} controls hidden />
+                                ) : (
+                                    <audio src={mediaBlobUrl} controls />
+                                )}
                             </Col>
 
                         </Row>

@@ -1,12 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-// import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Nav, Modal, Button, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Form from 'react-bootstrap/Form'
 import { BsFillTrash3Fill } from 'react-icons/bs'
-
+import { datetime } from "../utils/currentTime";
 import { removeEntry, useLocalForEntries } from "../utils/localStorage";
 
 const Notes = () => {
@@ -26,13 +24,6 @@ const Notes = () => {
     const [entryText, setEntryTextState] = useState(``);
     const [savedEntries, setSavedEntriesState] = useLocalForEntries('saved_entries', []);
 
-    let currentdate = new Date();
-    let datetime = (currentdate.getMonth() + 1) + "/"
-        + currentdate.getDate() + "/"
-        + currentdate.getFullYear() + ' @ '
-        + currentdate.getHours() + ':'
-        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
-        + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
     // console.log(savedEntries);
 
