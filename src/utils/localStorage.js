@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 export const getSavedWords = () => {
     const saved = localStorage.getItem('saved_words');
@@ -12,6 +12,11 @@ export const getSavedEntries = () => {
     return initialValue || [];
 };
 
+export const getSavedRecordings = () => {
+    const saved = localStorage.getItem('saved_recordings');
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+};
 // accessing local storage to set the state for the saved words offCanvas -- a custom hook.
 
 export const useLocalStr = (key, defaultValue) => {
@@ -67,7 +72,7 @@ export const useLocalForRecordings = (key, defaultValue) => {
     // console.log(key);
     // console.log(defaultValue);
     const [value, setValue] = useState(() => {
-        return getSavedEntries(key, defaultValue);
+        return getSavedRecordings(key, defaultValue);
     });
 
     useEffect(() => {
@@ -76,4 +81,19 @@ export const useLocalForRecordings = (key, defaultValue) => {
 
     return [value, setValue];
 
+};
+
+export const removeRecording = (date) => {
+    const savedEntries = localStorage.getItem('saved_recordings')
+        ? JSON.parse(localStorage.getItem('saved_recordings'))
+        : null;
+
+    if (!savedEntries) {
+        return false;
+    }
+
+    const updatedEntries = savedEntries?.filter((savedEntry) => savedEntry.date !== date);
+    localStorage.setItem('saved_recordings', JSON.stringify(updatedEntries));
+
+    return true;
 };

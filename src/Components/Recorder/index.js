@@ -7,7 +7,8 @@ import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 // https://www.npmjs.com/package/react-media-recorder a react recorder pkg to handle the recording
 import { ReactMediaRecorder } from "react-media-recorder";
 import { datetime } from "../../utils/currentTime";
-import { useLocalForRecordings } from "../../utils/localStorage";
+import { useLocalForRecordings, removeRecording } from "../../utils/localStorage";
+import { BsFillTrash3Fill } from 'react-icons/bs'
 
 const TheRecorder = () => {
     const [recordStatus, setRecordStatus] = useState(false);
@@ -56,8 +57,8 @@ const TheRecorder = () => {
 
         if (inputType === 'titleText') {
             setTitleState(inputValue);
-        } 
-      
+        }
+
     };
 
     const handleFormSubmit = (e) => {
@@ -95,9 +96,32 @@ const TheRecorder = () => {
                     <Offcanvas.Title >Recordings</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <ul>
+                    {savedEntries.map((entry) => {
+                        return (
+                            <>
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
+                                    <span className="trashEntry"
+                                        onClick={() => {
 
-                    </ul>
+                                            const updatedEntries =
+                                                savedEntries.filter((savedEntry) => savedEntry.date !== entry.date);
+
+                                            setSavedEntriesState(updatedEntries);
+
+                                            removeRecording(entry.date);
+
+                                        }}
+                                    >
+                                        <BsFillTrash3Fill />
+                                    </span>
+
+                                    <audio src={entry.recording} className="mt-3" controls />
+                                </Nav.Link>
+                                <br />
+                            </>
+                        )
+
+                    })}
 
                 </Offcanvas.Body>
             </Offcanvas>
@@ -126,11 +150,11 @@ const TheRecorder = () => {
                                 ) : (
                                     <>
                                         <audio src={mediaBlobUrl} controls />
-                                            <div onClick={() => {
-                                                handleModalShow();
-                                                setEntryRecordingState(mediaBlobUrl);
-                                                console.log(mediaBlobUrl);
-                                            }} className="submit newPost ">save recording</div>
+                                        <div onClick={() => {
+                                            handleModalShow();
+                                            setEntryRecordingState(mediaBlobUrl);
+                                            console.log(mediaBlobUrl);
+                                        }} className="submit newPost ">save recording</div>
                                         <Modal show={showModal} onHide={handleModalClose}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>New Notebook Entry</Modal.Title>
@@ -158,11 +182,11 @@ const TheRecorder = () => {
                                                             id="submit"
                                                             value='submit'
                                                             className="entrySubmit"
-                                                                onClick={() => {
-                                                                    handleModalClose();
-                                                                    setEntryRecordingState(mediaBlobUrl);
-                                                                    console.log(mediaBlobUrl);
-                                                                }}
+                                                            onClick={() => {
+                                                                handleModalClose();
+                                                                setEntryRecordingState(mediaBlobUrl);
+                                                                console.log(mediaBlobUrl);
+                                                            }}
                                                         >submit</button>
                                                     </Row>
                                                 </form>
