@@ -61,3 +61,19 @@ export const removeEntry = (date) => {
 
     return true;
 };
+
+export const useLocalForRecordings = (key, defaultValue) => {
+
+    // console.log(key);
+    // console.log(defaultValue);
+    const [value, setValue] = useState(() => {
+        return getSavedEntries(key, defaultValue);
+    });
+
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+
+    return [value, setValue];
+
+};
