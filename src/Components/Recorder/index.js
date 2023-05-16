@@ -9,6 +9,7 @@ import { ReactMediaRecorder } from "react-media-recorder";
 import { datetime } from "../../utils/currentTime";
 import { useLocalForRecordings, removeRecording } from "../../utils/localStorage";
 import { BsFillTrash3Fill } from 'react-icons/bs'
+import { putRecsDb } from "../../utils/database";
 
 const TheRecorder = () => {
     const [recordStatus, setRecordStatus] = useState(false);
@@ -72,6 +73,7 @@ const TheRecorder = () => {
         };
 
         setSavedEntriesState([entry, ...savedEntries]);
+        putRecsDb(savedEntries);
         setTitleState('');
         setEntryRecordingState('');
     }

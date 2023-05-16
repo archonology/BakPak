@@ -38,4 +38,28 @@ export const getWordsDb = async () => {
     return result;
 };
 
+export const putRecsDb = async (savedRecs) => {
+    console.log(savedRecs);
+    console.log('PUT to the database');
+    const bakPakDB = await openDB('bakpak', 1);
+    const transaction = bakPakDB.transaction('bakpak', 'readwrite');
+    const store = transaction.objectStore('bakpak');
+    //make sure this matches the bakpak entries syntax
+    const request = store.put({ savedRecs });
+    const result = await request;
+    console.log('Word saved to the database', result);
+};
+
+// gets all the content from the database
+export const getRecsDb = async () => {
+    console.log('GET recs from the database');
+    const bakPakDB = await openDB('bakpak', 1);
+    const transaction = bakPakDB.transaction('bakpak', 'readonly');
+    const store = transaction.objectStore('bakpak');
+    const request = store.getAll();
+    const result = await request;
+    console.log('result', result);
+    return result;
+};
+
 initdb();
