@@ -9,6 +9,7 @@
   --fifthGrayLight: rgb(94, 97, 101);
   --firstGreenLight: rgb(203, 241, 205);
   --secGreenLight: rgb(211, 250, 213);
+    --thirdGreenLight:rgb(143, 226, 149);
   --firstPinkLight: rgb(247, 207, 230);
   --secPinkLight: rgb(254, 171, 218);
   --firstBlueLight: rgb(160, 211, 251);
@@ -25,6 +26,8 @@
   --dark: rgb(45, 47, 48);
   --fadeTime: 3s;
 }
+
+
 
 html body {
   background-color: var(--light);
@@ -295,10 +298,14 @@ textarea {
 }
 
 
+.newPost {
+  /* margin-left: 3em; */
+}
+
 .note-box {
   margin: 3em;
   margin-top: 3em;
-  text-align: center;
+  text-align: left;
   /* padding: 3em; */
   /* border: 1px solid var(--dark);
   box-shadow: -6px 8px var(--dark); */
@@ -331,7 +338,7 @@ textarea {
 }
 
 .titleEntry {
-  text-align: center;
+  text-align: left;
   margin-bottom: 1em;
   padding: 1em;
   height: 3em;
@@ -341,7 +348,7 @@ textarea {
 }
 
 .textEntry {
-  text-align: center;
+  text-align: left;
   margin-bottom: 1em;
   padding: 1em;
   border-radius: 8px;
@@ -372,6 +379,10 @@ textarea {
   background-color: var(--lesslight);
   box-shadow: -3px 4px var(--dark);
   color: black;
+}
+
+.saveRec {
+  background-color: var(--firstGreenLight);
 }
 
 .stopRecording {
@@ -490,7 +501,7 @@ h5:hover {
 }
 
 .savebtn:hover {
-  background-color: var(--secGreenLight);
+  background-color: var(--thirdGreenLight);
 }
 
 .savedWrds:hover {
@@ -523,6 +534,10 @@ textarea:focus {
 
 .startRecording:hover {
     background-color: var(--mainBlueLight);
+}
+
+.saveRec:hover {
+  background-color: var(--thirdGreenLight);
 }
 
 .stopRecording:hover {

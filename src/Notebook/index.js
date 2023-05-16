@@ -112,7 +112,7 @@ const Notes = () => {
             </Offcanvas>
 
             <div className="d-flex justify-content-center">
-                <div onClick={handleModalShow} className="submit newPost ">create a new entry</div>
+                <div onClick={handleModalShow} className="submit newPost">create a new entry</div>
             </div>
             {/* Bootstrap modal */}
             <Modal show={showModal} onHide={handleModalClose}>
@@ -142,7 +142,7 @@ const Notes = () => {
                                 type="textarea"
                                 name='entryText'
                                 id="entry"
-                                rows={12}
+                                rows={6}
                                 value={entryText}
                                 onChange={handleInputChange}
                                 placeholder="entry"

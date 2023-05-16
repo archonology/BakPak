@@ -144,7 +144,7 @@ const TheRecorder = () => {
                                 }}
                                     className="stopRecording">Stop Recording</div>
 
-                                {status === 'recording' ? (<p className="status">{datetime} | {animate}</p>) : (<></>)}
+                                {status === 'recording' ? (<p className="status">{animate}</p>) : (<></>)}
                                 {!mediaBlobUrl ? (
                                     <audio src={mediaBlobUrl} controls hidden />
                                 ) : (
@@ -154,53 +154,54 @@ const TheRecorder = () => {
                                             handleModalShow();
                                             setEntryRecordingState(mediaBlobUrl);
                                             console.log(mediaBlobUrl);
-                                        }} className="submit newPost ">save recording</div>
-                                        <Modal show={showModal} onHide={handleModalClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>New Notebook Entry</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-
-                                                <form
-                                                    onSubmit={handleFormSubmit}
-                                                    className="entryForm d-flex justify-content-center"
-                                                >
-                                                    <Row>
-                                                        {/* <label for="title">Title:</label><br /> */}
-                                                        <input
-                                                            type="text"
-                                                            name='titleText'
-                                                            id="title"
-                                                            value={entryTitle}
-                                                            onChange={handleInputChange}
-                                                            placeholder="title"
-                                                            className="titleEntry"
-                                                            autoFocus
-                                                        />
-                                                        <button
-                                                            type="submit"
-                                                            id="submit"
-                                                            value='submit'
-                                                            className="entrySubmit"
-                                                            onClick={() => {
-                                                                handleModalClose();
-                                                                setEntryRecordingState(mediaBlobUrl);
-                                                                console.log(mediaBlobUrl);
-                                                            }}
-                                                        >submit</button>
-                                                    </Row>
-                                                </form>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleModalClose}>
-                                                    Close
-                                                </Button>
-
-                                            </Modal.Footer>
-                                        </Modal>
+                                            }} className="startRecording saveRec">save recording</div>
+                                       
                                     </>
                                 )}
                             </Col>
+                            <Modal show={showModal} onHide={handleModalClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>New Notebook Entry</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+
+                                    <form
+                                        onSubmit={handleFormSubmit}
+                                        className="entryForm d-flex justify-content-center"
+                                    >
+                                        <Row>
+                                            {/* <label for="title">Title:</label><br /> */}
+                                            <input
+                                                type="text"
+                                                name='titleText'
+                                                id="title"
+                                                value={entryTitle}
+                                                onChange={handleInputChange}
+                                                placeholder="title"
+                                                className="titleEntry"
+                                                autoFocus
+                                            />
+                                            <button
+                                                type="submit"
+                                                id="submit"
+                                                value='submit'
+                                                className="entrySubmit"
+                                                onClick={() => {
+                                                    handleModalClose();
+                                                    setEntryRecordingState(mediaBlobUrl);
+                                                    console.log(mediaBlobUrl);
+                                                }}
+                                            >submit</button>
+                                        </Row>
+                                    </form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleModalClose}>
+                                        Close
+                                    </Button>
+
+                                </Modal.Footer>
+                            </Modal>
 
                         </Row>
                     )}
