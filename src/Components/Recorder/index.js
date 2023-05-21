@@ -2,14 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
+// import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Container, Row, Col } from "react-bootstrap";
 // https://www.npmjs.com/package/react-media-recorder a react recorder pkg to handle the recording
 import { ReactMediaRecorder } from "react-media-recorder";
-import { datetime } from "../../utils/currentTime";
-import { useLocalForRecordings, removeRecording } from "../../utils/localStorage";
-import { BsFillTrash3Fill } from 'react-icons/bs'
-import { putRecsDb } from "../../utils/database";
+// import { datetime } from "../../utils/currentTime";
+// import { useLocalForRecordings, removeRecording } from "../../utils/localStorage";
+// import { BsFillTrash3Fill } from 'react-icons/bs'
+// import { putRecsDb, getRecsDb } from "../../utils/database";
 
 const TheRecorder = () => {
     const [recordStatus, setRecordStatus] = useState(false);
@@ -18,8 +18,6 @@ const TheRecorder = () => {
     const [showModal, setShowModal] = useState(false);
     const [entryTitle, setTitleState] = useState('');
     const [entryRecording, setEntryRecordingState] = useState('');
-    const [savedEntries, setSavedEntriesState] = useLocalForRecordings('saved_recordings', []);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleModalClose = () => setShowModal(false);
@@ -62,23 +60,6 @@ const TheRecorder = () => {
 
     };
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-
-
-        let entry = {
-            date: datetime,
-            title: entryTitle,
-            recording: entryRecording
-        };
-
-        setSavedEntriesState([entry, ...savedEntries]);
-        putRecsDb(savedEntries);
-        setTitleState('');
-        setEntryRecordingState('');
-    }
-    console.log(savedEntries);
-
 
     return (
         <>
@@ -89,44 +70,8 @@ const TheRecorder = () => {
                 <Nav.Item>
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Recordings</em></Nav.Link>
-                </Nav.Item>
             </Nav>
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title >Recordings</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    {savedEntries.map((entry) => {
-                        return (
-                            <>
-                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
-                                    <span className="trashEntry"
-                                        onClick={() => {
 
-                                            const updatedEntries =
-                                                savedEntries.filter((savedEntry) => savedEntry.date !== entry.date);
-
-                                            setSavedEntriesState(updatedEntries);
-
-                                            removeRecording(entry.date);
-
-                                        }}
-                                    >
-                                        <BsFillTrash3Fill />
-                                    </span>
-
-                                    <audio src={entry.recording} className="mt-3" controls />
-                                </Nav.Link>
-                                <br />
-                            </>
-                        )
-
-                    })}
-
-                </Offcanvas.Body>
-            </Offcanvas>
 
             <Container className="d-flex justify-content-center">
                 <ReactMediaRecorder
@@ -152,58 +97,15 @@ const TheRecorder = () => {
                                 ) : (
                                     <>
                                         <audio src={mediaBlobUrl} controls />
-                                        <div onClick={() => {
+                                        {/* <div onClick={() => {
                                             handleModalShow();
                                             setEntryRecordingState(mediaBlobUrl);
                                             console.log(mediaBlobUrl);
-                                            }} className="startRecording saveRec">save recording</div>
-                                       
+                                        }} className="startRecording saveRec">save recording</div> */}
+
                                     </>
                                 )}
                             </Col>
-                            <Modal show={showModal} onHide={handleModalClose}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>New Notebook Entry</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-
-                                    <form
-                                        onSubmit={handleFormSubmit}
-                                        className="entryForm d-flex justify-content-center"
-                                    >
-                                        <Row>
-                                            {/* <label for="title">Title:</label><br /> */}
-                                            <input
-                                                type="text"
-                                                name='titleText'
-                                                id="title"
-                                                value={entryTitle}
-                                                onChange={handleInputChange}
-                                                placeholder="title"
-                                                className="titleEntry"
-                                                autoFocus
-                                            />
-                                            <button
-                                                type="submit"
-                                                id="submit"
-                                                value='submit'
-                                                className="entrySubmit"
-                                                onClick={() => {
-                                                    handleModalClose();
-                                                    setEntryRecordingState(mediaBlobUrl);
-                                                    console.log(mediaBlobUrl);
-                                                }}
-                                            >submit</button>
-                                        </Row>
-                                    </form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleModalClose}>
-                                        Close
-                                    </Button>
-
-                                </Modal.Footer>
-                            </Modal>
 
                         </Row>
                     )}
