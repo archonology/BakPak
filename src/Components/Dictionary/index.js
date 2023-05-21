@@ -1,12 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { useState } from "react";
+import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { getWordsDb, putWordsDb } from "../../utils/database";
-import { getSavedWords, useLocalStr } from "../../utils/localStorage";
+import { putWordsDb } from "../../utils/database";
+import { useLocalStr } from "../../utils/localStorage";
 
 
 const FindWord = () => {
@@ -24,6 +22,14 @@ const FindWord = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    let currentdate = new Date();
+    let datetime = (currentdate.getMonth() + 1) + "/"
+        + currentdate.getDate() + "/"
+        + currentdate.getFullYear() + ' @ '
+        + currentdate.getHours() + ':'
+        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
+        + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
     // set up useEffect hook to save the words list to localStorage on component unmount
     // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -50,14 +56,20 @@ const FindWord = () => {
 
         for (let i = 0; i < savedWords.length; i++) {
 
-            if (savedWords[i] === word) {
+            if (savedWords[i].word === word) {
                 console.log('word match found');
 
                 return setErrorMessage(`The word ${word} has already been saved.`);
             }
         }
-        setSavedWords([...savedWords, word]);
-        putWordsDb(word);
+
+        let newWord = {
+            word_id: datetime,
+            word: word
+        };
+
+        setSavedWords([newWord, ...savedWords]);
+        putWordsDb(savedWords);
         setErrorMessage(`${wordState} has been saved.`);
     }
 
@@ -98,6 +110,7 @@ const FindWord = () => {
             const jsonData = await response.json();
             setErrorMessage('');
             setResponseState(jsonData);
+            console.log(jsonData);
 
         } catch (err) {
             console.error(err);
@@ -106,7 +119,6 @@ const FindWord = () => {
 
     return (
         <>
-            {/* <h2 className="title">Dictionary</h2> */}
 
             <Nav className="justify-content-center mb-5" activeKey="/home">
                 <Nav.Item>
@@ -128,25 +140,25 @@ const FindWord = () => {
                         <Offcanvas.Title >Saved Words</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <ul>
 
-                            {savedWords.length === 0 ? (<li>No saved words yet</li>) : (savedWords.map((word) => {
 
-                                return (
-                                    <>
-                                        <li
-                                            className="savedWrds"
-                                            key={word}
-                                            onClick={() => {
-                                                setWordState(word);
-                                                handleFetchSaved(word);
-                                                setShow(false);
-                                            }}>{word}</li>
-                                    </>
-                                )
-                            }))
-                            }
-                        </ul>
+                        {savedWords.length === 0 ? (<p>No saved words yet</p>) : (savedWords.map((savedWord) => {
+
+                            return (
+                                <>
+                                    <p
+                                        key={savedWord.word_id}
+                                        className="savedWrds"
+                                        onClick={() => {
+                                            setWordState(savedWord.word);
+                                            handleFetchSaved(savedWord.word);
+                                            setShow(false);
+                                        }}>{savedWord.word}</p>
+                                </>
+                            )
+                        })
+                        )}
+
 
                     </Offcanvas.Body>
                 </Offcanvas>
@@ -171,16 +183,16 @@ const FindWord = () => {
 
                     <div className="dictionary-container">
 
-                        {responseState?.map((word) => {
-
+                        {responseState?.map((word, index) => {
                             return (
                                 <>
                                     <div className="def-box">
-                                        <div key={crypto.randomUUID()} className="definitions">
+                                        <div key={index++} className="definitions">
 
-                                            {/* <p >{word.phonetic}</p> */}
+                                            <p >{word.phonetic}</p>
 
                                             <p >{word.meanings[0].definitions[0].definition}</p>
+                                            
                                             {word.meanings[0].definitions[1] ? (
                                                 <>
                                                     <hr></hr>

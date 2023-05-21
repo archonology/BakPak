@@ -1,12 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-// import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Nav, Modal, Button, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Form from 'react-bootstrap/Form'
 import { BsFillTrash3Fill } from 'react-icons/bs'
-
+import { datetime } from "../utils/currentTime";
 import { removeEntry, useLocalForEntries } from "../utils/localStorage";
 
 const Notes = () => {
@@ -26,13 +24,6 @@ const Notes = () => {
     const [entryText, setEntryTextState] = useState(``);
     const [savedEntries, setSavedEntriesState] = useLocalForEntries('saved_entries', []);
 
-    var currentdate = new Date();
-    var datetime = (currentdate.getMonth() + 1) + "/"
-        + currentdate.getDate() + "/"
-        + currentdate.getFullYear() + ' @ '
-        + currentdate.getHours() + ':'
-        + currentdate.getMinutes() + ':'
-        + currentdate.getSeconds();
 
     // console.log(savedEntries);
 
@@ -62,7 +53,8 @@ const Notes = () => {
         };
 
         setSavedEntriesState([entry, ...savedEntries]);
-        setEntryTextState('');
+        setTitleState('');
+        setEntryTextState(``);
     }
     console.log(savedEntries);
     // bindings for managing react-hook-form -- check out https://www.react-hook-form.com/api/useform/ to learn more.
@@ -94,7 +86,7 @@ const Notes = () => {
                     {savedEntries.map((entry) => {
                         return (
                             <>
-                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date} 
+                                <Nav.Link key={entry.date} className="entries"> <em>{entry.title}</em> | {entry.date}
                                     <span className="trashEntry"
                                         onClick={() => {
 
@@ -107,7 +99,7 @@ const Notes = () => {
 
                                         }}
                                     >
-                                         <BsFillTrash3Fill />
+                                        <BsFillTrash3Fill />
                                     </span>
                                 </Nav.Link>
                                 <br />
@@ -120,7 +112,7 @@ const Notes = () => {
             </Offcanvas>
 
             <div className="d-flex justify-content-center">
-                <div onClick={handleModalShow} className="submit newPost ">create a new entry</div>
+                <div onClick={handleModalShow} className="submit newPost">create a new entry</div>
             </div>
             {/* Bootstrap modal */}
             <Modal show={showModal} onHide={handleModalClose}>
@@ -150,19 +142,19 @@ const Notes = () => {
                                 type="textarea"
                                 name='entryText'
                                 id="entry"
-                                rows={12}
+                                rows={6}
                                 value={entryText}
                                 onChange={handleInputChange}
                                 placeholder="entry"
                                 className="textEntry"
                             />
-                            <input
+                            <button
                                 type="submit"
                                 id="submit"
                                 value='submit'
                                 className="entrySubmit"
                                 onClick={handleModalClose}
-                            />
+                            >submit</button>
                         </Row>
                     </form>
 

@@ -9,6 +9,7 @@
   --fifthGrayLight: rgb(94, 97, 101);
   --firstGreenLight: rgb(203, 241, 205);
   --secGreenLight: rgb(211, 250, 213);
+    --thirdGreenLight:rgb(143, 226, 149);
   --firstPinkLight: rgb(247, 207, 230);
   --secPinkLight: rgb(254, 171, 218);
   --firstBlueLight: rgb(160, 211, 251);
@@ -25,6 +26,8 @@
   --dark: rgb(45, 47, 48);
   --fadeTime: 3s;
 }
+
+
 
 html body {
   background-color: var(--light);
@@ -47,7 +50,7 @@ ul li {
 }
 
 .header {
-  /* margin-top: 1em; */
+  margin-top: .4em;
   margin-bottom: .5em;
   font-size: 50px;
   font-weight: bold;
@@ -159,6 +162,17 @@ border: 3px solid;
   background-repeat: no-repeat;
 }
 
+.toolRecord {
+  background-image: url('./images/tape.PNG');
+  /* background-size: 130%;
+  background-position: 140%; */
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: 5%;
+  background-position-y: top;
+  /* background-position-x: left; */
+}
+
 .toolTitle {
   float: right;
   padding: 1em;
@@ -215,6 +229,12 @@ border: 3px solid;
 
 .savedWrds {
   font-weight: bold;
+  padding: 1em;
+  background-color: var(--firstPinkLight);
+  text-align: center;
+  width: auto;
+  border-radius: 8px;
+    box-shadow: -3px 3px var(--dark);
 }
 
 
@@ -278,10 +298,14 @@ textarea {
 }
 
 
+.newPost {
+  /* margin-left: 3em; */
+}
+
 .note-box {
   margin: 3em;
   margin-top: 3em;
-  text-align: center;
+  text-align: left;
   /* padding: 3em; */
   /* border: 1px solid var(--dark);
   box-shadow: -6px 8px var(--dark); */
@@ -305,7 +329,7 @@ textarea {
 .notebook {
   font-family: 'Yomogi', cursive;
   font-size: 25px;
-  line-height: 27px;
+  line-height: 30px;
   white-space: pre-wrap;
 }
 
@@ -314,7 +338,7 @@ textarea {
 }
 
 .titleEntry {
-  text-align: center;
+  text-align: left;
   margin-bottom: 1em;
   padding: 1em;
   height: 3em;
@@ -324,7 +348,7 @@ textarea {
 }
 
 .textEntry {
-  text-align: center;
+  text-align: left;
   margin-bottom: 1em;
   padding: 1em;
   border-radius: 8px;
@@ -333,6 +357,7 @@ textarea {
 }
 
 .entrySubmit {
+  padding: 10px;
   border-radius: 8px;
   background-color: var(--firstPinkLight);
   box-shadow: -3px 3px var(--dark);
@@ -342,6 +367,60 @@ textarea {
   margin-left: 8px;
   padding: 5px;
   border-radius: 20%;
+}
+
+.startRecording {
+  width: 275px;
+  padding: 10px;
+  margin: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--lesslight);
+  box-shadow: -3px 4px var(--dark);
+  color: black;
+}
+
+.saveRec {
+  background-color: var(--firstGreenLight);
+}
+
+.stopRecording {
+  width: 275px;
+  padding: 10px;
+  margin: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--firstPinkLight);
+  box-shadow: -3px 4px var(--dark);
+  color: black;
+}
+
+.status {
+  width: 275px;
+  padding: 10px;
+  margin: 1em;
+  border: 1px var(--dark) solid;
+  border-radius: 10px;
+  text-align: left;
+  background-color: var(--firstGreenLight);
+  box-shadow: -3px 4px var(--dark);
+  color: black;
+  -webkit-animation: fadein var(--fadeTime);
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein var(--fadeTime);
+    /* Firefox < 16 */
+    -ms-animation: fadein var(--fadeTime);
+    /* Internet Explorer */
+    -o-animation: fadein var(--fadeTime);
+    /* Opera < 12.1 */
+    animation: fadein var(--fadeTime);
+}
+
+audio {
+  /* width: 300px;
+  height: 100%; */
 }
 
 .error-text {
@@ -422,12 +501,12 @@ h5:hover {
 }
 
 .savebtn:hover {
-  background-color: var(--secGreenLight);
+  background-color: var(--thirdGreenLight);
 }
 
 .savedWrds:hover {
   cursor: pointer;
-  color: var(--fifthGrayLight);
+  background-color: var(--secPinkLight);
 }
 
 .submit:hover {
@@ -453,11 +532,49 @@ textarea:focus {
   background-color: var(--secPinkLight);
 }
 
+.startRecording:hover {
+    background-color: var(--mainBlueLight);
+}
+
+.saveRec:hover {
+  background-color: var(--thirdGreenLight);
+}
+
+.stopRecording:hover {
+  background-color: var(--secPinkLight);
+}
+
 @media screen and (max-width: 1020px) {
   .toolCalc {
     background-size: 200%;
     background-position: 90%;
+    background-position-y: top;
 
+  }
+
+  .toolRecord {
+    background-size: 110%;
+    background-position-y: top;
+    background-position-x: left;
+  }
+}
+
+@media screen and (max-width: 430px) {
+
+  .toolNote {
+    background-size: 200%;
+    background-position: 70%;
+    background-position-y: bottom;
+  }
+
+  .toolRecord {
+    background-size: 140%;
+    background-position-y: top;
+    background-position-x: left;
+  }
+
+  .submit {
+    margin-top: 1em;
   }
 }
 
