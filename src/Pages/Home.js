@@ -43,9 +43,17 @@ const Home = () => {
                             className="tools toolRecord"
                             as={Link}
                             to={'/recorder'}><h2 className="toolTitle">Recorder<span className="japanTool"><br></br>
-                            ボイスレコーダー</span></h2>
+                                ボイスレコーダー</span></h2>
                             <br></br>
                             {/* <p className="toolTitle">電卓</p> */}
+                        </Col>
+                        <Col
+                            xs={11} sm={10} md={8}
+                            className="tools toolWeather"
+                            as={Link}
+                            to={'/weather'}><h2 className="toolTitle">Weather<span className="japanTool"><br></br>
+                                天気</span></h2>
+                            <br></br>
                         </Col>
                     </Row>
                     {/* <Row>

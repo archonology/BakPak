@@ -3,20 +3,21 @@ import { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { putWordsDb } from "../../utils/database";
 import { useLocalStr } from "../../utils/localStorage";
+// import { getWeather } from "../../utils/api";
 
+const weatherKey = "b5794a08ba88b4d36fef7769417b2041";
 
-const FindWord = () => {
+const WeatherCall = () => {
 
     // holds user input
-    const [wordState, setWordState] = useState('');
+    const [cityState, setCityState] = useState('');
     // holds the response data objects in an array
     const [responseState, setResponseState] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const localData = localStorage.getItem('saved_words');
+    const localData = localStorage.getItem('saved_cities');
 
-    const [savedWords, setSavedWords] = useLocalStr('saved_words', []);
+    const [savedCities, setSavedCities] = useLocalStr('saved_cities', []);
 
     const [show, setShow] = useState(false);
 
@@ -33,41 +34,40 @@ const FindWord = () => {
 
 
 
-    const handleSavedWords = (word) => {
+    const handlesavedCities = (city) => {
 
-        for (let i = 0; i < savedWords.length; i++) {
+        for (let i = 0; i < savedCities.length; i++) {
 
-            if (savedWords[i].word === word) {
-                console.log('word match found');
+            if (savedCities[i].city === city) {
+                console.log('city match found');
 
-                return setErrorMessage(`The word ${word} has already been saved.`);
+                return setErrorMessage(`The city ${city} has already been saved.`);
             }
         }
 
-        let newWord = {
-            word_id: datetime,
-            word: word
+        let newCity = {
+            city_id: datetime,
+            city: city
         };
 
-        setSavedWords([newWord, ...savedWords]);
-        putWordsDb(savedWords);
-        setErrorMessage(`${wordState} has been saved.`);
+        setSavedCities([newCity, ...savedCities]);
+        setErrorMessage(`${cityState} has been saved.`);
     }
 
-    const handleFetchSaved = async (word) => {
+    const handleFetchSaved = async (city) => {
 
         try {
-            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+            const response = await fetch(`http://api.weatherstack.com/current?access_key=${process.env.WEATHER_API_KEY}&query=${city}`);
 
             if (!response.ok) {
-                setErrorMessage("Sorry, we can't find that word.");
+                setErrorMessage("Sorry, we can't find that city.");
                 setResponseState([]);
                 throw new Error("something went wrong!");
             }
 
             const jsonData = await response.json();
             setErrorMessage('');
-            setResponseState(...jsonData);
+            setResponseState(jsonData);
 
         } catch (err) {
             console.error(err);
@@ -80,10 +80,10 @@ const FindWord = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordState}`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityState}&cnt=6&appid=${weatherKey}&units=imperial`);
 
             if (!response.ok) {
-                setErrorMessage("Sorry, we can't find that word.");
+                setErrorMessage("Sorry, we can't find that city.");
                 setResponseState([]);
                 throw new Error("something went wrong!");
             }
@@ -92,24 +92,27 @@ const FindWord = () => {
             setErrorMessage('');
             setResponseState(jsonData);
             console.log(jsonData);
+           
 
         } catch (err) {
             console.error(err);
         }
     };
 
+    console.log(responseState);
+
     return (
         <>
 
             <Nav className="justify-content-center mb-5" activeKey="/home">
                 <Nav.Item>
-                    <Nav.Link as={Link} to={'/dictionary'}><strong className="title">Dictionary</strong></Nav.Link>
+                    <Nav.Link as={Link} to={'/weather'}><strong className="title">Weather</strong></Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link as={Link} to={'/home'}><em className="diction-nav">BakPak</em> </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Entries</em></Nav.Link>
+                    <Nav.Link className="viewSaved" onClick={handleShow}><em className="diction-nav">Saved Cities</em></Nav.Link>
                 </Nav.Item>
             </Nav>
 
@@ -118,23 +121,23 @@ const FindWord = () => {
 
                 <Offcanvas show={show} onHide={handleClose}>
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title >Saved Words</Offcanvas.Title>
+                        <Offcanvas.Title >Saved Cities</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
 
 
-                        {savedWords.length === 0 ? (<p>No saved words yet</p>) : (savedWords.map((savedWord) => {
+                        {savedCities.length === 0 ? (<p>No saved cities yet</p>) : (savedCities.map((savedcity) => {
 
                             return (
                                 <>
                                     <p
-                                        key={savedWord.word_id}
+                                        key={savedcity.city_id}
                                         className="savedWrds"
                                         onClick={() => {
-                                            setWordState(savedWord.word);
-                                            handleFetchSaved(savedWord.word);
+                                            setCityState(savedcity.city);
+                                            handleFetchSaved(savedcity.city);
                                             setShow(false);
-                                        }}>{savedWord.word}</p>
+                                        }}>{savedcity.city}</p>
                                 </>
                             )
                         })
@@ -153,9 +156,9 @@ const FindWord = () => {
                                 id="search"
                                 name="search"
                                 type="text"
-                                placeholder="enter a word"
-                                value={wordState}
-                                onChange={(e) => setWordState(e.target.value)}
+                                placeholder="enter a city"
+                                value={cityState}
+                                onChange={(e) => setCityState(e.target.value)}
                             ></input>
                             <input type='submit' value={'search'} className="submit" onClick={handleFormSubmit}></input>
                         </form>
@@ -164,22 +167,16 @@ const FindWord = () => {
 
                     <div className="dictionary-container">
 
-                        {responseState?.map((word, index) => {
+                        {responseState?.map((city, index) => {
                             return (
                                 <>
                                     <div className="def-box">
                                         <div key={index++} className="definitions">
 
-                                            <p >{word.phonetic}</p>
+                                            <p >{city}</p>
+                                            <h3>{city} degrees</h3>
 
-                                            <p >{word.meanings[0].definitions[0].definition}</p>
 
-                                            {word.meanings[0].definitions[1] ? (
-                                                <>
-                                                    <hr></hr>
-                                                    <p>{word.meanings[0].definitions[1].definition}</p>
-                                                </>
-                                            ) : (<></>)}
                                             <hr></hr>
                                         </div>
 
@@ -198,10 +195,10 @@ const FindWord = () => {
                     </div>
                     {responseState.length !== 0 ? (<>   <div className="savebtn" onClick={() => {
 
-                        handleSavedWords(wordState);
+                        handlesavedCities(cityState);
 
                     }
-                    }>save word</div></>
+                    }>save city</div></>
                     ) : (<></>)}
 
                 </div>
@@ -210,4 +207,4 @@ const FindWord = () => {
     )
 }
 
-export default FindWord;
+export default WeatherCall;

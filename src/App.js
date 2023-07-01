@@ -8,6 +8,7 @@ import Calculate from './Pages/Calculator';
 import Dictionary from './Pages/Dictionary';
 import Notebook from './Pages/Notebook';
 import Recorder from './Pages/Recorder';
+import Weather from './Pages/Weather';
 import Footer from './Components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,6 +29,7 @@ function App() {
           <Route path='/dictionary' element={<Dictionary />} />
           <Route path='/notebook' element={<Notebook />} />
           <Route path='/recorder' element={<Recorder />} />
+          <Route path='/weather' element={<Weather />} />
           <Route path="*" element={<Landing />} />
         </Routes>
         <div>
