@@ -22,15 +22,15 @@ function App() {
           <Header />
         </div>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route index element={<Landing />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route index element={<Landing />} /> */}
           <Route path="/home" element={<Home />} />
           <Route path='/calculator' element={<Calculate />} />
           <Route path='/dictionary' element={<Dictionary />} />
           <Route path='/notebook' element={<Notebook />} />
           <Route path='/recorder' element={<Recorder />} />
-          <Route path='/weather' element={<Weather />} />
-          <Route path="*" element={<Landing />} />
+          {/* <Route path='/weather' element={<Weather />} /> */}
+          <Route path="*" element={<Home />} />
         </Routes>
         <div>
           <Footer />

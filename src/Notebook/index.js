@@ -126,7 +126,6 @@ const Notes = () => {
                         className="entryForm d-flex justify-content-center"
                     >
                         <Row>
-                            {/* <label for="title">Title:</label><br /> */}
                             <input
                                 type="text"
                                 name='titleText'
@@ -137,7 +136,6 @@ const Notes = () => {
                                 className="titleEntry"
                                 autoFocus
                             />
-                            {/* <label for="entry">Entry:</label><br /> */}
                             <textarea
                                 type="textarea"
                                 name='entryText'
@@ -176,21 +174,11 @@ const Notes = () => {
                             <p className="date">{entry.date}</p>
                             <p className="notebook">{entry.entry}</p>
 
-
-                            {/* <div className="savebtn">save word</div> */}
-                            {/* className="note-box" */}
                         </div>
                     </>
                 )
 
             })}
-
-
-            {/* 
-            <div className="note-box">
-                <p className="">2 April 2022 | 3:21pm</p>
-                <h4 className="notebook">Dear Diary, if the frog smokes all the cigarettes, call Hiro down at the docks. He knows how to trade tuna cans for smokes.</h4>
-            </div> */}
         </>
     )
 }
