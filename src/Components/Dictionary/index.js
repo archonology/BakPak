@@ -67,7 +67,7 @@ const FindWord = () => {
 
             const jsonData = await response.json();
             setErrorMessage('');
-            setResponseState(...jsonData);
+            setResponseState(jsonData);
 
         } catch (err) {
             console.error(err);
