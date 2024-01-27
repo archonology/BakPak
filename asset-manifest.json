@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/BakPak/static/css/main.09803d11.css",
-    "main.js": "/BakPak/static/js/main.54212a84.js",
+    "main.js": "/BakPak/static/js/main.61027feb.js",
     "static/js/787.28cb0dcd.chunk.js": "/BakPak/static/js/787.28cb0dcd.chunk.js",
     "static/media/notebook.PNG": "/BakPak/static/media/notebook.bb15d9b35198c6420edd.PNG",
     "static/media/tape.PNG": "/BakPak/static/media/tape.aed2805255f03768a1dd.PNG",
@@ -10,11 +10,11 @@
     "static/media/dictionPic2.png": "/BakPak/static/media/dictionPic2.3dd4dcb96b05b646357d.png",
     "index.html": "/BakPak/index.html",
     "main.09803d11.css.map": "/BakPak/static/css/main.09803d11.css.map",
-    "main.54212a84.js.map": "/BakPak/static/js/main.54212a84.js.map",
+    "main.61027feb.js.map": "/BakPak/static/js/main.61027feb.js.map",
     "787.28cb0dcd.chunk.js.map": "/BakPak/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.09803d11.css",
-    "static/js/main.54212a84.js"
+    "static/js/main.61027feb.js"
   ]
 }
