@@ -4,7 +4,6 @@ import { Nav, Modal, Button, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { BsFillTrash3Fill } from 'react-icons/bs'
-import { datetime } from "../utils/currentTime";
 import { removeEntry, useLocalForEntries } from "../utils/localStorage";
 
 const Notes = () => {
@@ -42,9 +41,13 @@ const Notes = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-
-        console.log(datetime);
-        console.log(entryText);
+        let currentdate = new Date();
+        let datetime = (currentdate.getMonth() + 1) + "/"
+            + currentdate.getDate() + "/"
+            + currentdate.getFullYear() + ' @ '
+            + currentdate.getHours() + ':'
+            + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes() + ':'
+            + (currentdate.getSeconds() < 10 ? '0' : '') + currentdate.getSeconds();
 
         let entry = {
             date: datetime,
@@ -56,12 +59,6 @@ const Notes = () => {
         setTitleState('');
         setEntryTextState(``);
     }
-    console.log(savedEntries);
-    // bindings for managing react-hook-form -- check out https://www.react-hook-form.com/api/useform/ to learn more.
-    // const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    // const onSubmit = data => console.log(data);
-
-    // console.log(watch("example")); // watch input value by passing the name of it
 
     return (
         <>
